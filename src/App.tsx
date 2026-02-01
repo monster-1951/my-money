@@ -12,9 +12,9 @@ function App() {
 
   const [Year, setYear] = useState<number>(currentDate.getFullYear());
   const [Month, setMonth] = useState<number>(currentDate.getMonth());
-  const [expense, setExpense] = useState<number>(totalExpense);
-  const [income, setIncome] = useState<number>(totalIncome);
-  const [balance, setBalance] = useState<number>(totalIncome-totalExpense);
+  const [expense] = useState<number>(totalExpense);
+  const [income] = useState<number>(totalIncome);
+  const [balance] = useState<number>(totalIncome-totalExpense);
 
   const financialMetricsForHeader: financialMetric[] = [
     {
