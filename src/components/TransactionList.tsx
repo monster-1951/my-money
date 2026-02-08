@@ -6,7 +6,7 @@ interface RecordsProps {
 
 const TransactionList = (props: RecordsProps) => {
   console.log(props.Records)
-  const renderTransactionRecord = props.Records ? props.Records.map(
+  const renderTransactionRecord = props.Records?.length ? props.Records.map(
     (TransactionRecord: Record) => (
       <div
         key={TransactionRecord.id}
@@ -19,12 +19,12 @@ const TransactionList = (props: RecordsProps) => {
         />
         <div className="flex justify-between w-full border-b">
           <div className="flex flex-col">
-            <span>{TransactionRecord.category}</span>
-            <span>{TransactionRecord.account}</span>
+            <span>{TransactionRecord.categories?.name}</span>
+            <span>{TransactionRecord.accounts_records_accountToaccounts.name}</span>
           </div>
           <div className="font-semibold">
 
-          <span className={`${TransactionRecord.type=="Income" ? "text-green-600" : `${TransactionRecord.type == "Expense" ? "text-red-600":"text-blue-500"}`}`} >&#8377;{TransactionRecord.amount}</span>
+          <span className={`${TransactionRecord.type=="Income" ? "text-green-600" : `${TransactionRecord.type == "Expense" ? "text-red-600":"text-blue-500"}`}`} >&#8377;{(TransactionRecord.amount)}</span>
           </div>
         </div>
       </div>

@@ -1,25 +1,39 @@
-import { createBrowserRouter,RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
-import { LoginPage } from "./pages/Auth/Login";
-
+import Auth from "./pages/Auth/Auth";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const router = createBrowserRouter([
     {
-      path:"/",
-      element:<LoginPage/>
+      path: "/",
+      element: <Home />,
     },
     {
-      path:"/Home",
-      element:<Home/>
-    }
-  ])
-
+      path: "/login",
+      element: <Auth register={false} />,
+    },
+    {
+      path: "/register",
+      element: <Auth register />,
+    },
+  ]);
   return (
     <>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router}></RouterProvider>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
-  )
+  );
 }
 
 export default App;
