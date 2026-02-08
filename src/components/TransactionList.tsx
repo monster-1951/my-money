@@ -1,34 +1,35 @@
-import type { TransactionRecord } from "../types/types";
+import type { Record } from "../types/types";
 
 interface RecordsProps {
-  TransactionRecords: TransactionRecord[];
+  Records: Record[] | undefined;
 }
 
 const TransactionList = (props: RecordsProps) => {
-  const renderTransactionRecord = props.TransactionRecords.map(
-    (TransactionRecord: TransactionRecord) => (
+  console.log(props.Records)
+  const renderTransactionRecord = props.Records ? props.Records.map(
+    (TransactionRecord: Record) => (
       <div
-        key={props.TransactionRecords.indexOf(TransactionRecord)}
+        key={TransactionRecord.id}
         className="flex w-[85%] mx-auto py-3 gap-3"
       >
         <img
-          src={`/iconsForCategories/${TransactionRecord.CATEGORY}.png`}
+          src={`/iconsForCategories/${TransactionRecord.category}.png`}
           alt="not found"
           className="rounded-full w-fit h-12"
         />
         <div className="flex justify-between w-full border-b">
           <div className="flex flex-col">
-            <span>{TransactionRecord.CATEGORY}</span>
-            <span>{TransactionRecord.ACCOUNT}</span>
+            <span>{TransactionRecord.category}</span>
+            <span>{TransactionRecord.account}</span>
           </div>
           <div className="font-semibold">
 
-          <span className={`${TransactionRecord.TYPE=="(+) Income" ? "text-green-600" : `${TransactionRecord.TYPE == "(-) Expense" ? "text-red-600":"text-blue-500"}`}`} >&#8377;{TransactionRecord.AMOUNT.toPrecision(3)}</span>
+          <span className={`${TransactionRecord.type=="Income" ? "text-green-600" : `${TransactionRecord.type == "Expense" ? "text-red-600":"text-blue-500"}`}`} >&#8377;{TransactionRecord.amount}</span>
           </div>
         </div>
       </div>
     ),
-  );
+  ) : <>No transactions</>
   return <>{renderTransactionRecord}</>;
 };
 
