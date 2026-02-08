@@ -9,7 +9,7 @@ interface HeaderProps {
   financialMetricsForHeader: financialMetric[];
 }
 const Header = (props: HeaderProps) => {
-
+  console.log(props.financialMetricsForHeader)
   const renderMetrics = props.financialMetricsForHeader.map(
     (financialMetric: financialMetric) => (
       <div
@@ -17,7 +17,7 @@ const Header = (props: HeaderProps) => {
         key={props.financialMetricsForHeader.indexOf(financialMetric)}
       >
         <span>{financialMetric.name}</span>
-        <span className={`${financialMetric.name=="EXPENSE" ? "text-red-600" : "text-green-600"}`}>&#8377;{financialMetric.value.toPrecision(3)}</span>
+        <span className={`${financialMetric.name=="EXPENSE" ? "text-red-600" : "text-green-600"}`}>&#8377;{String(financialMetric.value)}</span>
       </div>
     ),
   );

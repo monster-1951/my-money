@@ -1,65 +1,37 @@
-import { useState } from "react";
-import Header from "./components/Header";
-import { records, totalExpense, totalIncome } from "./lib/constants";
-import type { financialMetric } from "./types/types";
-import TransactionList from "./components/TransactionList";
-
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home";
+import Auth from "./pages/Auth/Auth";
+import { ToastContainer } from "react-toastify";
 
 function App() {
-  const currentDate = new Date();
-
-
-  const [Year, setYear] = useState<number>(currentDate.getFullYear());
-  const [Month, setMonth] = useState<number>(currentDate.getMonth());
-  const [expense] = useState<number>(totalExpense);
-  const [income] = useState<number>(totalIncome);
-  const [balance] = useState<number>(totalIncome-totalExpense);
-
-  const financialMetricsForHeader: financialMetric[] = [
+  const router = createBrowserRouter([
     {
-      name: "EXPENSE",
-      value: expense,
+      path: "/",
+      element: <Home />,
     },
     {
-      name: "INCOME",
-      value: income,
+      path: "/login",
+      element: <Auth register={false} />,
     },
     {
-      name: "BALANCE",
-      value: balance,
+      path: "/register",
+      element: <Auth register />,
     },
-  ];
-
-
-  const handleNextMonth = (monthDec: boolean) => {
-    if (monthDec) {
-      setYear(Year + 1);
-      setMonth(0);
-    } else {
-      setMonth(Month + 1);
-    }
-  };
-
-  const handlePrevMonth = (monthJan: boolean) => {
-    if (monthJan) {
-      setMonth(11);
-      setYear(Year - 1);
-    } else {
-      setMonth(Month - 1);
-    }
-  };
-
+  ]);
   return (
     <>
-      <Header
-        Month={Month}
-        Year={Year}
-        financialMetricsForHeader={financialMetricsForHeader}
-        handleNextMonth={handleNextMonth}
-        handlePrevMonth={handlePrevMonth}
+      <RouterProvider router={router}></RouterProvider>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
       />
-      <TransactionList TransactionRecords={records}/>
     </>
   );
 }
