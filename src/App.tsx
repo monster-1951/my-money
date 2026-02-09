@@ -18,6 +18,7 @@ function App() {
       const token = getCSRF_TOKEN();
       console.log(token);
     };
+    console.log(session)
     getUser();
   }, []);
   const router = createBrowserRouter([
