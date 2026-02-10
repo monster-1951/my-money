@@ -3,7 +3,7 @@ import { login, register } from "../../api/auth";
 import AuthLayout from "../../components/AuthLayout";
 import AuthForm from "../../components/AuthForm";
 import type { formField } from "../../types/types";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 interface AuthProps {
