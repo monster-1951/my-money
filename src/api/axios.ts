@@ -33,7 +33,7 @@ export const records = axios.create({
       return request;
     },
     (error) => {
-      window.location.href = "/login";
+      // window.location.href = "/login";
       return Promise.reject(error);
     },
   )
@@ -44,7 +44,7 @@ export const records = axios.create({
     return response
   },
   (error) => {
-    window.location.href = "/login";
+    // window.location.href = "/login";
       return Promise.reject(error);
   }
 ));
