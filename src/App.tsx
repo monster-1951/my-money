@@ -1,4 +1,4 @@
-import { createBrowserRouter, Link, Navigate, RouterProvider } from "react-router-dom";
+import { createBrowserRouter,Navigate, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth/Auth";
 import { ToastContainer } from "react-toastify";

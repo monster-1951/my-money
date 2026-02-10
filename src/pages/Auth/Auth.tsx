@@ -18,7 +18,6 @@ interface FormActionFooterProps {
 
 const Auth = (props: AuthProps) => {
   const [passwordInputType] = useState("password")
-  const navigate = useNavigate();
   const [formData, setFormdata] = useState({
     name: "",
     email: "",
