@@ -2,7 +2,6 @@ import axios from "axios";
 import { getCSRF_TOKEN } from "../modules/csrf";
 
 const backend_URL = import.meta.env.VITE_URL_FOR_BACKEND;
-
 export const backend = axios.create({
   baseURL: backend_URL,
   timeout: 10000,
@@ -29,22 +28,23 @@ export const records = axios.create({
 [backend, records].forEach((instance) =>
   instance.interceptors.request.use(
     (request) => {
-      request.headers["x-csrf-token"] = getCSRF_TOKEN()
+      request.headers["x-csrf-token"] = getCSRF_TOKEN();
       return request;
     },
     (error) => {
-      // window.location.href = "/login";
       return Promise.reject(error);
     },
-  )
+  ),
 );
 
-[backend,records].forEach(instance => instance.interceptors.response.use(
-  (response) => {
-    return response
-  },
-  (error) => {
-    // window.location.href = "/login";
+[backend, records].forEach((instance) =>
+  instance.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      
       return Promise.reject(error);
-  }
-));
+    },
+  ),
+);

@@ -8,6 +8,7 @@ import type {
 } from "../types/types";
 import { getRecords } from "../api/records";
 import Decimal from "decimal.js";
+import { logout } from "../api/auth";
 
 const HomePage = () => {
   const currentDate = new Date();
@@ -57,7 +58,6 @@ const HomePage = () => {
       try {
         setLoading(true);
         const response = (await getRecords()) as GetAllRecordsResponse;
-        console.log("Home", response);
         setRecords(response.data.Records);
         const currentExpense: Decimal =
           response.data.Records?.filter(
@@ -99,6 +99,10 @@ const HomePage = () => {
         handleNextMonth={handleNextMonth}
         handlePrevMonth={handlePrevMonth}
       />
+      <button onClick={async() => {
+        console.log("Loggint out ")
+        await logout()
+      }} className="border-2 p-2">Logout</button>
       <TransactionList Records={records} />
     </>
   );

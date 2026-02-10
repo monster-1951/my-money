@@ -83,7 +83,7 @@ const Auth = (props: AuthProps) => {
       }
       if(response.success){
         toast.success("Login Successful")
-        navigate("/")
+        window.location.href = "/"
       } else {
         toast.error(response.message)
       }

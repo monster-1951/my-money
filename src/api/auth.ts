@@ -36,3 +36,16 @@ export const getSessionUser = async () => {
     return error;
   }
 };
+
+export const logout = async () => {
+  try {
+    console.log("Logout triggered")
+    const response = await auth.get("/logout");
+    window.location.href = "/"
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};

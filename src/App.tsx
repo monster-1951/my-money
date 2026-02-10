@@ -1,10 +1,10 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Link, Navigate, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth/Auth";
 import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import { getSessionUser } from "./api/auth";
-import { getCSRF_TOKEN, setCSRF_TOKEN } from "./modules/csrf";
+import { setCSRF_TOKEN } from "./modules/csrf";
 
 function App() {
   const [session, setSession] = useState();
@@ -15,15 +15,16 @@ function App() {
       setSession(user.USER);
       setBootstrapped(true);
       setCSRF_TOKEN(user.CSRF_TOKEN);
-      const token = getCSRF_TOKEN();
-      console.log(token);
     };
-    console.log(session)
     getUser();
   }, []);
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/", 
+      element:<Navigate to={"/home"}/>
+    },
+    {
+      path: "/home",
       element: <Home />,
     },
     {
@@ -35,7 +36,18 @@ function App() {
       element: <Auth register />,
     },
   ]);
-  if (bootStrapped)
+
+  const authRouter = createBrowserRouter([
+    {
+      path: "/",
+      element: <Auth register={false} />,
+    },
+    {
+      path: "/register",
+      element: <Auth register />,
+    },
+  ]);
+  if (bootStrapped && session) {
     return (
       <>
         <RouterProvider router={router}></RouterProvider>
@@ -52,7 +64,24 @@ function App() {
         />
       </>
     );
-  else return <>Loading</>;
+  } else if (!bootStrapped) return <>Loading</>;
+  else
+    return (
+      <>
+        <RouterProvider router={authRouter}></RouterProvider>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </>
+    );
 }
 
 export default App;
