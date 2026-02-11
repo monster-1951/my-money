@@ -1,10 +1,20 @@
-import { createBrowserRouter,Navigate, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
-import Auth from "./pages/Auth/Auth";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import Home from "./pages/app/home/page";
+import Auth from "./pages/Auth/page";
 import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import { getSessionUser } from "./api/auth";
 import { setCSRF_TOKEN } from "./modules/csrf";
+import Analysis from "./pages/app/analysis/page";
+import Create from "./pages/app/create/page";
+import Accounts from "./pages/app/accounts/page";
+import Categories from "./pages/app/categories/page";
+
+
 
 function App() {
   const [session, setSession] = useState();
@@ -20,8 +30,8 @@ function App() {
   }, []);
   const router = createBrowserRouter([
     {
-      path: "/", 
-      element:<Navigate to={"/home"}/>
+      path: "/",
+      element: <Navigate to={"/home"} />,
     },
     {
       path: "/home",
@@ -34,6 +44,22 @@ function App() {
     {
       path: "/register",
       element: <Auth register />,
+    },
+    {
+      path: "/analysis",
+      element: <Analysis />,
+    },
+    {
+      path: "/create",
+      element: <Create />,
+    },
+    {
+      path: "/accounts",
+      element: <Accounts />,
+    },
+    {
+      path: "/categories",
+      element: <Categories />,
     },
   ]);
 
