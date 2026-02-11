@@ -19,7 +19,7 @@ const CreateOrEditTransactioinPage = () => {
   return (
     <div className="flex flex-col min-h-dvh w-full sm:w-[80%] md:w-[40%] xl:w-[30%] mx-auto">
       {/* Cancel Save Button */}
-      <div className="flex justify-between px-5 py-1 shrink-0">
+      <div className="flex justify-between px-5 py-1 pt-3 shrink-0">
         <NavLink to={"/"}>&#10005; CANCEL</NavLink>
         <button>&#10003; SAVE</button>
       </div>
