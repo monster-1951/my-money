@@ -27,6 +27,8 @@ export interface formField {
 
 export type category_type = "Expense" | "Income";
 
+export type record_type = "Income" | "Expense" | "Transfer";
+
 export interface Category {
   id: number;
   name: string;
@@ -45,7 +47,7 @@ export interface account {
 export interface Record {
   id: number;
   time: string;
-  type: "Income" | "Expense" | "Transfer";
+  type: record_type
   amount: string;
   account: number;
   category: number;
