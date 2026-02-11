@@ -44,7 +44,7 @@ const Header = (props: HeaderProps) => {
               />
             </svg>
           </button>
-          <span className="text-4xl font-bold">My Money</span>
+          <span className="text-3xl font-bold">My Money</span>
           <button className="sm:hidden">
             <svg
               className="w-6 h-6"
@@ -66,7 +66,7 @@ const Header = (props: HeaderProps) => {
         </div>
         <div
           id="currentMonth"
-          className="flex text-2xl justify-around "
+          className="flex text-xl justify-around "
           data-carousel="static"
         >
           <button
@@ -85,7 +85,7 @@ const Header = (props: HeaderProps) => {
             &gt;
           </button>
         </div>
-        <div className="flex text-xl justify-around text-center">
+        <div className="flex justify-around text-center">
           {renderMetrics}
         </div>
       </header>

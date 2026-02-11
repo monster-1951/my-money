@@ -43,7 +43,6 @@ export const records = axios.create({
       return response;
     },
     (error) => {
-      
       return Promise.reject(error);
     },
   ),
