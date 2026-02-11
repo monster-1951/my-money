@@ -1,7 +1,7 @@
-import AppLayout from "../Layout";
+import CreatePage from "../../../components/CreatePageComponents/CreatePage";
 
 const Create = () => {
-  return <AppLayout>Create</AppLayout>;
+  return <CreatePage/>
 };
 
 export default Create;
