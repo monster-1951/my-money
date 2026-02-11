@@ -11,7 +11,7 @@ interface AuthFormProps {
 const AuthForm = (props: AuthFormProps) => {
   return (
     <>
-      <div className="text-2xl text-center font-bold p-3">{props.Heading}</div>
+      <div className="text-2xl text-center font-bold p-3 w-fit text-nowrap">{props.Heading}</div>
       <div className="flex flex-col p-3">
         {props.formFields.map((f) => {
           return (
