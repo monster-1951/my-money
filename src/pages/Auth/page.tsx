@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { login, register } from "../../api/auth";
-import AuthLayout from "../../components/AuthLayout";
+import AuthLayout from "./Layout";
 import AuthForm from "../../components/AuthForm";
 import type { formField } from "../../types/types";
 import { Link } from "react-router-dom";

@@ -1,4 +1,5 @@
-import type { Record } from "../types/types";
+import type { Record } from "../../types/types";
+
 
 interface RecordsProps {
   Records: Record[] | undefined;

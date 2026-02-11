@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import Header from "./Header";
 import TransactionList from "./TransactionList";
 import type {
   financialMetric,
   GetAllRecordsResponse,
   Record,
-} from "../types/types";
-import { getRecords } from "../api/records";
+} from "../../types/types";
+import { getRecords } from "../../api/records";
 import Decimal from "decimal.js";
-import { logout } from "../api/auth";
+import { logout } from "../../api/auth";
+import HomeHeader from "./HomeHeader";
 
 const HomePage = () => {
   const currentDate = new Date();
@@ -92,17 +92,22 @@ const HomePage = () => {
   }
   return (
     <>
-      <Header
+      <HomeHeader
         Month={Month}
         Year={Year}
         financialMetricsForHeader={financialMetricsForHeader}
         handleNextMonth={handleNextMonth}
         handlePrevMonth={handlePrevMonth}
       />
-      <button onClick={async() => {
-        console.log("Loggint out ")
-        await logout()
-      }} className="border-2 p-2">Logout</button>
+      <button
+        onClick={async () => {
+          console.log("Loggint out ");
+          await logout();
+        }}
+        className="border-2 p-2"
+      >
+        Logout
+      </button>
       <TransactionList Records={records} />
     </>
   );
