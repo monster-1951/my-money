@@ -42,6 +42,7 @@ export interface account {
   name: string;
   balance: string;
   user_id: number;
+  icon:number;
 }
 
 export interface Record {
