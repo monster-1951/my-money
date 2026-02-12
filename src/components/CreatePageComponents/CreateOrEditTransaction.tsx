@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import type { Record, record_type } from "../../types/types";
+import type {record_type } from "../../types/types";
 import "react-datepicker/dist/react-datepicker.css";
 import { mockAccounts, mockCategories } from "../../lib/constants";
 import TransactionType from "./TransactionType";
@@ -8,7 +8,6 @@ import AccountsAndCategoryInput from "./RecordInput/SubComponents/AccountsAndCat
 import NotePad from "./RecordInput/SubComponents/NotePad";
 import Calculator from "./RecordInput/SubComponents/Calculator";
 import DateInput from "./DateInput";
-import type { CreateRecordParams } from "../../schemas/RecordSchema";
 
 const CreateOrEditTransactioinPage = () => {
   const [type, setType] = useState<record_type>("Expense");
