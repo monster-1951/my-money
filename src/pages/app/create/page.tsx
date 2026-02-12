@@ -1,7 +1,7 @@
-import CreatePage from "../../../components/CreatePageComponents/CreatePage";
+import CreateOrEditTransaction from "../../../components/CreatePageComponents/CreateOrEditTransaction";
 
 const Create = () => {
-  return <CreatePage/>
+  return <CreateOrEditTransaction/>
 };
 
 export default Create;
