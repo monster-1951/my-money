@@ -1,4 +1,4 @@
-import { IoAddCircleOutline } from "react-icons/io5";
+import { PlusCircle } from "iconoir-react";
 import { Link } from "react-router-dom";
 import type { account } from "../../../../../../types/types";
 import MappedIcon from "../../../../../UtilityComponent/MappedIcon";
@@ -40,7 +40,7 @@ const SelectAccount = (props: SelectAccountProps) => {
 
           <Link to={"/"}>
             <button className="border flex justify-center p-2 gap-3 w-fit mx-auto">
-              <IoAddCircleOutline className="text-2xl" />
+              <PlusCircle />
               <span>ADD NEW ACCOUNT</span>
             </button>
           </Link>

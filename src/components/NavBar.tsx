@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
-import { TiDocumentText } from "react-icons/ti";
-import { CiWallet } from "react-icons/ci";
-import { GrAnalytics } from "react-icons/gr";
-import { IoAddCircleOutline } from "react-icons/io5";
-import { IoPricetagsOutline } from "react-icons/io5";
 import type { ReactElement } from "react";
+import { GoogleDocs, Keyframe, PlusCircle, StatsUpSquare, Wallet } from "iconoir-react";
 
-const iconStyle = "text-3xl";
+const iconStyle = "";
 
 interface NavBarElement {
   id: string;
@@ -20,31 +16,31 @@ const Navbar_Elements: NavBarElement[] = [
     id: "1",
     name: "Records",
     path: "/home",
-    icon: <TiDocumentText className={iconStyle} />,
+    icon: <GoogleDocs className={iconStyle} />,
   },
   {
     id: "2",
     name: "Analysis",
     path: "/analysis",
-    icon: <GrAnalytics className={iconStyle} />,
+    icon: <StatsUpSquare className={iconStyle} />,
   },
   {
     id: "3",
     name: "Create",
     path: "/create",
-    icon: <IoAddCircleOutline className={iconStyle} />,
+    icon: <PlusCircle className={iconStyle} />,
   },
   {
     id: "4",
     name: "Accounts",
     path: "/accounts",
-    icon: <CiWallet className={iconStyle} />,
+    icon: <Wallet className={iconStyle} />,
   },
   {
     id: "5",
     name: "Categories",
     path: "/categories",
-    icon: <IoPricetagsOutline className={iconStyle} />,
+    icon: <Keyframe className={iconStyle} />,
   },
 ];
 

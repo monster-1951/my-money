@@ -1,4 +1,4 @@
-import { IoAddCircleOutline } from "react-icons/io5";
+import {PlusCircle} from 'iconoir-react'
 import { Link } from "react-router-dom";
 import type { Category } from "../../../../../../types/types";
 import MappedIcon from "../../../../../UtilityComponent/MappedIcon";
@@ -34,7 +34,7 @@ const SelectCategory = (props: SelectCategoryProps) => {
             </div>
             <Link to={"/"}>
               <button className="border flex justify-center p-2 gap-3 w-fit mx-auto">
-                <IoAddCircleOutline className="text-2xl" />
+                <PlusCircle />
                 <span>ADD NEW CATEGORY</span>
               </button>
             </Link>

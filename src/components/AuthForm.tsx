@@ -1,7 +1,4 @@
 import type { formField } from "../types/types";
-// import {Icon} from "react-icons-kit";
-// import { eyeOff } from "react-icons-kit/feather/eyeOff";
-// import { eye } from "react-icons-kit/feather/eye";
 
 interface AuthFormProps {
   Heading: string;
