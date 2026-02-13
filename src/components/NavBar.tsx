@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import type { ReactElement } from "react";
-import { GoogleDocs, Keyframe, PlusCircle, StatsUpSquare, Wallet } from "iconoir-react";
+import {
+  GoogleDocs,
+  Keyframe,
+  PlusCircle,
+  StatsUpSquare,
+  Wallet,
+} from "iconoir-react";
 
 const iconStyle = "";
 
@@ -46,14 +52,16 @@ const Navbar_Elements: NavBarElement[] = [
 
 const renderNavBarElements = (elements: NavBarElement[]) => {
   return elements.map((element) => (
-    <Link key={element.id} to={element.path}>
+    <NavLink
+      key={element.id}
+      to={element.path}
+      className={({ isActive }) => (isActive ? "font-bold text-xl" : "font-normal")}
+    >
       <div className="flex flex-col p-2 my-auto">
         <div className="w-fit mx-auto">{element.icon}</div>
-        <div className="text-xs">
-            {element.name}
-        </div>
+        <div className="text-xs">{element.name}</div>
       </div>
-    </Link>
+    </NavLink>
   ));
 };
 
