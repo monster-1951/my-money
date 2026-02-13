@@ -55,7 +55,7 @@ const renderNavBarElements = (elements: NavBarElement[]) => {
     <NavLink
       key={element.id}
       to={element.path}
-      className={({ isActive }) => (isActive ? "font-bold text-xl" : "font-normal")}
+      className={({ isActive }) => (isActive ? "font-bold underline underline-offset-8" : "font-normal")}
     >
       <div className="flex flex-col p-2 my-auto">
         <div className="w-fit mx-auto">{element.icon}</div>
