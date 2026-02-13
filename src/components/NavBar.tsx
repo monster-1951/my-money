@@ -59,7 +59,7 @@ const renderNavBarElements = (elements: NavBarElement[]) => {
 
 const NavBar = () => {
   return (
-    <nav className="border bottom-0 fixed w-full h-[7%] flex justify-around bg-gray-700 text-indigo-200 ">
+    <nav className="bottom-0 fixed w-full flex justify-around bg-gray-700 text-indigo-200 px-3 py-1">
       {renderNavBarElements(Navbar_Elements)}
     </nav>
   );
