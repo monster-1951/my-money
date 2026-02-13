@@ -28,7 +28,7 @@ const SelectCategory = (props: SelectCategoryProps) => {
                   <span className="rounded-full border w-fit p-2 mx-auto">
                     <MappedIcon id={category.icon}/>
                   </span>
-                  <span className="p-2 text-xl"> {category.name}</span>
+                  <span className="p-2 text-sm"> {category.name.slice(0,6)}...</span>
                 </button>
               ))}
             </div>
