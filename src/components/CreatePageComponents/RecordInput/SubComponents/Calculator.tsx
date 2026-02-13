@@ -1,4 +1,4 @@
-import { PiBackspace } from "react-icons/pi";
+import { XmarkCircle } from "iconoir-react";
 import * as math from "mathjs";
 import { useState } from "react";
 
@@ -67,8 +67,8 @@ const Calculator = (props: CalculatorProps) => {
         <div className="p-1">
           <div className="flex rounded border px-1 w-full focus:border-0 justify-end gap-2 py-3">
             <span className="font-semibold text-4xl">{amountString}</span>
-            <PiBackspace
-              className="text-2xl my-auto"
+            <XmarkCircle
+              className="my-auto"
               onClick={handleBackSpace}
             />
           </div>
