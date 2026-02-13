@@ -47,8 +47,7 @@ const Navbar_Elements: NavBarElement[] = [
 const renderNavBarElements = (elements: NavBarElement[]) => {
   return elements.map((element) => (
     <Link key={element.id} to={element.path}>
-      <div className="flex flex-col p-2">
-
+      <div className="flex flex-col p-2 my-auto">
         <div className="w-fit mx-auto">{element.icon}</div>
         <div className="text-xs">
             {element.name}
