@@ -22,7 +22,6 @@ const AccountsList = (props: AccountsListProps) => {
         );
       })}
       <CreateAccount
-        accounts={props.accounts}
         setAccounts={props.setAccounts}
       />
     </div>
