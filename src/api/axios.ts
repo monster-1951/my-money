@@ -25,7 +25,16 @@ export const records = axios.create({
   withCredentials: true,
 });
 
-[backend, records].forEach((instance) =>
+export const accounts = axios.create({
+  baseURL: `${backend_URL}/account`,
+  timeout: 10000,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: true,
+});
+
+[backend, records, accounts].forEach((instance) =>
   instance.interceptors.request.use(
     (request) => {
       request.headers["x-csrf-token"] = getCSRF_TOKEN();
@@ -37,7 +46,7 @@ export const records = axios.create({
   ),
 );
 
-[backend, records].forEach((instance) =>
+[backend, records, accounts].forEach((instance) =>
   instance.interceptors.response.use(
     (response) => {
       return response;

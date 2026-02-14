@@ -282,6 +282,20 @@ export const mockCategories: Category[] = [
     balance: "15000.00",
     user_id: 1,
     icon:8
+  },
+  {
+    id: 109,
+    name: "Savings Account",
+    balance: "7500.50",
+    user_id: 1,
+    icon:7
+  },
+  {
+    id: 110,
+    name: "Investment Account",
+    balance: "15000.00",
+    user_id: 1,
+    icon:8
   }
 ];
 

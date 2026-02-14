@@ -1,7 +1,6 @@
-import { PlusCircle } from "iconoir-react";
-import { Link } from "react-router-dom";
 import type { account } from "../../../../../../types/types";
 import MappedIcon from "../../../../../UtilityComponent/MappedIcon";
+import CreateAccount from "../../../../../CreatAccount/CreateAccount";
 
 interface SelectAccountProps {
     title:string
@@ -12,7 +11,7 @@ const SelectAccount = (props: SelectAccountProps) => {
   return (
     <>
       <div
-        className={`flex-1 z-10 bottom-0 left-0 fixed border bg-white w-full flex flex-col justify-center p-5 gap-5`}
+        className="flex-1 z-10 bottom-0 left-0 fixed border bg-white w-full flex flex-col justify-center p-5 gap-5"
       >
         <>
           <div className="text-center text-xl">{props.title}</div>
@@ -37,13 +36,7 @@ const SelectAccount = (props: SelectAccountProps) => {
               );
             })}
           </div>
-
-          <Link to={"/"}>
-            <button className="border flex justify-center p-2 gap-3 w-fit mx-auto">
-              <PlusCircle />
-              <span>ADD NEW ACCOUNT</span>
-            </button>
-          </Link>
+          <CreateAccount/>
         </>
       </div>
     </>
