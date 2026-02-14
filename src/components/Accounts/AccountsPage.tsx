@@ -7,6 +7,7 @@ import type { account } from "../../types/types";
 
 const AccountsPage = () => {
   const [accounts, setAccounts] = useState<account[]>([]);
+  const [totalOfAccounts,setTotalOfAccounts] = useState(0)
   useEffect(() => {
     const GetAllAccounts = async () => {
       try {
@@ -14,8 +15,12 @@ const AccountsPage = () => {
         if (!response.allAccounts) {
           toast.error(response.message);
         }
-
-        setAccounts(response.allAccounts);
+        const allAccounts = response.allAccounts as account[]
+        setAccounts(allAccounts);
+        setTotalOfAccounts(() => {
+          const balances = allAccounts.map((a) => Number(a.balance));
+          return balances.reduce((x, y) => x + y, 0);
+        });
       } catch (error) {
         toast.error("Failed to fetch records");
       }
@@ -24,7 +29,7 @@ const AccountsPage = () => {
   }, []);
   return (
     <>
-      <AccountsHeader allAccounts={1000} />
+      <AccountsHeader allAccounts={totalOfAccounts} />
       <AccountsList accounts={accounts} setAccounts={setAccounts}/>
     </>
   );
