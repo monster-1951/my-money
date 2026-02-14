@@ -89,3 +89,5 @@ export const IconsMap: IconsMapInterface[] = [
   { icon_id: 32, element: <Group className={IconClass} /> },
   { icon_id: 33, element: <Restart className={IconClass} /> },
 ];
+
+export const accountIconsMap = IconsMap.slice(0,11)
