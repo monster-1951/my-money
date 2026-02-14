@@ -6,6 +6,7 @@ interface SelectAccountProps {
     title:string
   accounts: account[];
   handleAccountChange: (option: account) => void;
+   setAccounts:React.Dispatch<React.SetStateAction<account[]>>
 }
 const SelectAccount = (props: SelectAccountProps) => {
   return (
@@ -36,7 +37,7 @@ const SelectAccount = (props: SelectAccountProps) => {
               );
             })}
           </div>
-          <CreateAccount/>
+          <CreateAccount setAccounts={props.setAccounts}/>
         </>
       </div>
     </>

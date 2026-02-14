@@ -1,4 +1,4 @@
-import CreateOrEditTransaction from "../../../components/CreatePageComponents/CreateOrEditTransaction";
+import CreateOrEditTransaction from "../../../components/CreateRecordPageComponents/CreateOrEditTransaction";
 
 const Create = () => {
   return <CreateOrEditTransaction/>

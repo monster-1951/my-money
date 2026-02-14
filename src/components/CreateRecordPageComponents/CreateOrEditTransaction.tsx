@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import type {record_type } from "../../types/types";
+import type { record_type } from "../../types/types";
 import "react-datepicker/dist/react-datepicker.css";
-import { mockAccounts, mockCategories } from "../../lib/constants";
+import { mockCategories } from "../../lib/constants";
 import TransactionType from "./TransactionType";
 import AccountsAndCategoryInput from "./RecordInput/SubComponents/AccountsAndCategoriesInput/AccountsAndCategoryInput";
 import NotePad from "./RecordInput/SubComponents/NotePad";
@@ -19,17 +19,17 @@ const CreateOrEditTransactioinPage = () => {
   const [amount, setAmount] = useState(0);
 
   const saveRecord = () => {
-    const record  = {
-      type:"Expense",
-      account_id:account,
-      category_id:category,
-      transferred_to_account_id:transferredToAccount,
+    const record = {
+      type: "Expense",
+      account_id: account,
+      category_id: category,
+      transferred_to_account_id: transferredToAccount,
       notes,
       amount,
-      time:date?.toLocaleDateString() || "",
-    }
-    console.log(record)
-  }
+      time: date?.toLocaleDateString() || "",
+    };
+    console.log(record);
+  };
   return (
     <div className="flex flex-col min-h-dvh w-full sm:w-[80%] md:w-[60%] xl:w-[40%] mx-auto">
       {/* Cancel Save Button */}
@@ -44,7 +44,6 @@ const CreateOrEditTransactioinPage = () => {
         <AccountsAndCategoryInput
           record_type={type}
           setAccount={setAccount}
-          accounts={mockAccounts}
           categories={mockCategories}
           setCategory={setCategory}
           setTransferredToAccount={setTransferredToAccount}
