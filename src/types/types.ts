@@ -42,13 +42,13 @@ export interface account {
   name: string;
   balance: string;
   user_id: number;
-  icon:number;
+  icon: number;
 }
 
 export interface Record {
   id: number;
   time: string;
-  type: record_type
+  type: record_type;
   amount: string;
   account: number;
   category: number;
@@ -70,4 +70,9 @@ export interface GetAllRecordsResponse extends AxiosResponse {
   Records?: Record[];
   TotalCount?: number;
   TotalRecords?: number;
+}
+
+export interface SaveAccountParams {
+  data: { name: string; balance: number; icon: number };
+  id: string;
 }

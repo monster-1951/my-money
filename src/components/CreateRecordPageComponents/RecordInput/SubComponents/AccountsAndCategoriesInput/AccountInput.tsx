@@ -5,6 +5,7 @@ import type { account } from "../../../../../types/types";
 
 interface AccountInputInterFace {
   accounts: account[];
+  setAccounts: React.Dispatch<React.SetStateAction<account[]>>;
   setAccount: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -41,6 +42,7 @@ const AccountInput = (props: AccountInputInterFace) => {
             title="Select an account"
             accounts={props.accounts}
             handleAccountChange={handleAccountChange}
+            setAccounts={props.setAccounts}
           />
         </div>
       )}

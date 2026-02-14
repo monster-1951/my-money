@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import type {
   record_type,
   account,
@@ -7,10 +8,11 @@ import type {
 import AccountInput from "./AccountInput";
 import CategoryInput from "./CategoryInput";
 import TransferredToAccountInput from "./TransferToAccountInput";
+import { toast } from "react-toastify";
+import { Get } from "../../../../../api/accounts";
 
 interface AccountsAndCategoryInputInterface {
   record_type: record_type;
-  accounts: account[];
   setAccount: React.Dispatch<React.SetStateAction<number>>;
   categories: Category[];
   setCategory: React.Dispatch<React.SetStateAction<number>>;
@@ -18,6 +20,22 @@ interface AccountsAndCategoryInputInterface {
 }
 
 const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
+  const [accounts, setAccounts] = useState<account[]>([]);
+  useEffect(() => {
+    const GetAllAccounts = async () => {
+      try {
+        const response = await Get();
+        if (!response.allAccounts) {
+          toast.error(response.message);
+        }
+
+        setAccounts(response.allAccounts);
+      } catch (error) {
+        toast.error("Failed to fetch records");
+      }
+    };
+    GetAllAccounts();
+  }, []);
   return (
     <>
       <div className="flex justify-around">
@@ -27,7 +45,11 @@ const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
         </button>
       </div>
       <div className="flex justify-around px-1 py-2 space-x-1 font-semibold">
-        <AccountInput accounts={props.accounts} setAccount={props.setAccount} />
+        <AccountInput
+          accounts={accounts}
+          setAccount={props.setAccount}
+          setAccounts={setAccounts}
+        />
         {props.record_type !== "Transfer" && (
           <CategoryInput
             categories={props.categories}
@@ -37,8 +59,9 @@ const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
         )}
         {props.record_type === "Transfer" && (
           <TransferredToAccountInput
-            accounts={props.accounts}
+            accounts={accounts}
             setTransferredToAccount={props.setTransferredToAccount}
+            setAccounts={setAccounts}
           />
         )}
       </div>

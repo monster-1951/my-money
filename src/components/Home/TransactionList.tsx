@@ -37,7 +37,7 @@ const TransactionList = (props: RecordsProps) => {
   ) : (
     <>No transactions</>
   );
-  return <>{renderTransactionRecord}</>;
+  return <div className="flex flex-1 min-h-screen">{renderTransactionRecord}</div>;
 };
 
 export default TransactionList;

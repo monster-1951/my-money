@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { accountIconsMap } from "../../lib/iconsMap";
 import MappedIcon from "../UtilityComponent/MappedIcon";
-import { Create } from "../../api/accounts";
-import { toast } from "react-toastify";
+import type { account, SaveAccountParams } from "../../types/types";
 
 interface EditAccountProps {
-  setCreateOrEditIconDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCreateOrEditAccountDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  account?: account;
+  SaveAccount: (params: SaveAccountParams) => Promise<void>;
 }
 
 const EditAccount = (props: EditAccountProps) => {
-  const [initialAmount, setInitialAmount] = useState(0);
-  const [accountName, setAccountName] = useState("");
-  const [categoryIcon, setCategoryIcon] = useState(0);
+  const [initialAmount, setInitialAmount] = useState(
+    props.account?.balance || 0,
+  );
+  const [accountName, setAccountName] = useState(props.account?.name || "");
+  const [categoryIcon, setCategoryIcon] = useState(props.account?.icon || 0);
 
   const handleInitialAmountChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -25,29 +28,8 @@ const EditAccount = (props: EditAccountProps) => {
   const handleCategoryIconChange = (icon_id: number) => {
     setCategoryIcon(icon_id);
   };
-
-  const CreateAccount = async () => {
-    const params = {
-      name: accountName,
-      balance: initialAmount,
-      icon: categoryIcon,
-    };
-    try {
-      const response = await Create(params);
-      console.log(response);
-      if (response.newAccount) {
-        toast.success(response.message);
-        props.setCreateOrEditIconDialogOpen((prev) => !prev);
-      } else {
-        toast.error(response.message);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Failed to create an account");
-    }
-  };
   return (
-    <div className="fixed inset-0 bg-black/30 pt-15">
+    <div className="fixed inset-0 bg-black/30 flex items-center z-10">
       <div className="h-fit bg-white flex flex-col items-center p-5 gap-5 max-w-90 mx-auto shadow rounded-2xl py-10">
         <div className="text-xl ">Add new account</div>
         <div className="flex flex-col gap-2 p-3">
@@ -82,6 +64,7 @@ const EditAccount = (props: EditAccountProps) => {
                   onClick={() => {
                     handleCategoryIconChange(i.icon_id);
                   }}
+                  key={i.icon_id}
                 >
                   <MappedIcon
                     key={i.icon_id}
@@ -94,11 +77,25 @@ const EditAccount = (props: EditAccountProps) => {
           </div>
         </div>
         <div className="flex w-full justify-around">
-          <button className="border py-2 px-3 rounded">Cancel</button>
+          <button
+            onClick={() => {
+              props.setCreateOrEditAccountDialogOpen((prev) => !prev);
+            }}
+            className="border py-2 px-3 rounded"
+          >
+            Cancel
+          </button>
           <button
             className="border py-2 px-3 rounded"
             onClick={async () => {
-              await CreateAccount();
+              await props.SaveAccount({
+                data: {
+                  name: accountName,
+                  balance: Number(initialAmount),
+                  icon: categoryIcon,
+                },
+                id: String(props.account?.id),
+              });
             }}
           >
             Save

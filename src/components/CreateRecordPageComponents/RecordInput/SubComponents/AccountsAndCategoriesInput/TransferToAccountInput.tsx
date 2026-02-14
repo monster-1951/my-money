@@ -6,6 +6,7 @@ import type { account } from "../../../../../types/types";
 interface TransferredToAccountInputProps {
   setTransferredToAccount: React.Dispatch<React.SetStateAction<number>>;
   accounts: account[];
+  setAccounts: React.Dispatch<React.SetStateAction<account[]>>;
 }
 
 const TransferredToAccountInput = (props: TransferredToAccountInputProps) => {
@@ -45,6 +46,7 @@ const TransferredToAccountInput = (props: TransferredToAccountInputProps) => {
             title="Transfer to"
             accounts={props.accounts}
             handleAccountChange={handleTransferToAccountChange}
+            setAccounts={props.setAccounts}
           />
         </div>
       )}
