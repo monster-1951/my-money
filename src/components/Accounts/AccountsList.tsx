@@ -1,4 +1,5 @@
 import { mockAccounts } from "../../lib/constants";
+import CreateAccount from "../CreatAccount/CreateAccount";
 import MappedIcon from "../UtilityComponent/MappedIcon";
 
 const AccountsList = () => {
@@ -19,6 +20,7 @@ const AccountsList = () => {
           </div>
         );
       })}
+      <CreateAccount/>
     </div>
   );
 };
