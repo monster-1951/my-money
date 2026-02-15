@@ -4,10 +4,11 @@ import AccountsList from "./AccountsList/AccountsList";
 import { toast } from "react-toastify";
 import type { account } from "../../types/types";
 import { GetAccountsapi } from "../../api/accounts";
+import Decimal from "decimal.js";
 
 const AccountsPage = () => {
   const [accounts, setAccounts] = useState<account[]>([]);
-  const [totalOfAccounts,setTotalOfAccounts] = useState(0)
+  const [totalOfAccounts,setTotalOfAccounts] = useState(Decimal(0))
   useEffect(() => {
     const GetAllAccounts = async () => {
       try {
@@ -18,8 +19,8 @@ const AccountsPage = () => {
         const allAccounts = response.allAccounts as account[]
         setAccounts(allAccounts);
         setTotalOfAccounts(() => {
-          const balances = allAccounts.map((a) => Number(a.balance));
-          return balances.reduce((x, y) => x + y, 0);
+          const balances = allAccounts.map((a) => Decimal(a.balance));
+          return balances.reduce((x, y) => x.add(y), Decimal(0));
         });
       } catch (error) {
         toast.error("Failed to fetch records");
