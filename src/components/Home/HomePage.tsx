@@ -4,15 +4,16 @@ import type {
   GetAllRecordsResponse,
   Record,
 } from "../../types/types";
-import { getRecords } from "../../api/records";
 import Decimal from "decimal.js";
-import { logout } from "../../api/auth";
 import HomeHeader from "./HomeHeader";
 import RecordList from "../Records/RecordList/RecordList";
+import { GetRecordsApi } from "../../api/records";
+import EditRecord from "../Records/CreateRecord/EditRecord/EditRecord";
 
 const HomePage = () => {
   const currentDate = new Date();
-
+  const [updateRecord,setUpdateRecord] = useState(false)
+  const [recordToUpdate,setRecordToUpdate] = useState<Record>()
   const [Year, setYear] = useState<number>(currentDate.getFullYear());
   const [Month, setMonth] = useState<number>(currentDate.getMonth());
   const [loading, setLoading] = useState<boolean>(false);
@@ -55,12 +56,13 @@ const HomePage = () => {
 
   useEffect(() => {
     const InitializeRecordsData = async () => {
+      // setRecords(mockRecords)
       try {
         setLoading(true);
-        const response = (await getRecords()) as GetAllRecordsResponse;
-        setRecords(response.data.Records);
+        const response = (await GetRecordsApi()) as GetAllRecordsResponse;
+        setRecords(response.Records);
         const currentExpense: Decimal =
-          response.data.Records?.filter(
+          response.Records?.filter(
             (record: Record) => record.type === "Expense",
           )
             .map((records: Record) => Decimal(records.amount))
@@ -68,7 +70,7 @@ const HomePage = () => {
               return Decimal(x).plus(Decimal(y));
             }, Decimal(0)) || Decimal(0);
         const currentIncome: Decimal =
-          response.data.Records?.filter(
+          response.Records?.filter(
             (record: Record) => record.type === "Income",
           )
             .map((records: Record) => Decimal(records.amount))
@@ -87,30 +89,33 @@ const HomePage = () => {
     InitializeRecordsData();
   }, []);
 
+  const DeleteRecord = async (id:string) => {
+    alert(`Delete ${id}`)
+  }
+
+  const UpdateRecord = async (record:Record) => {
+    setRecordToUpdate(record)
+    setUpdateRecord(true)
+  }
   if (loading) {
     return <>Loading...</>;
   }
-  return (
-    <>
-      <HomeHeader
-        Month={Month}
-        Year={Year}
-        financialMetricsForHeader={financialMetricsForHeader}
-        handleNextMonth={handleNextMonth}
-        handlePrevMonth={handlePrevMonth}
-      />
-      <button
-        onClick={async () => {
-          console.log("Loggint out ");
-          await logout();
-        }}
-        className="border-2 p-2"
-      >
-        Logout
-      </button>
-      <RecordList Records={records} />
-    </>
-  );
+  if(!updateRecord){
+    return (
+      <>
+        <HomeHeader
+          Month={Month}
+          Year={Year}
+          financialMetricsForHeader={financialMetricsForHeader}
+          handleNextMonth={handleNextMonth}
+          handlePrevMonth={handlePrevMonth}
+        />
+        <RecordList Records={records} DeleteRecord={DeleteRecord}  EditRecord={UpdateRecord}/>
+      </>
+    );
+  } else {
+    return <EditRecord Record={recordToUpdate}/>
+  }
 };
 
 export default HomePage;

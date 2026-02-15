@@ -1,7 +1,7 @@
-import CreateOrEditTransaction from "../../../components/Records/CreateRecord/EditRecord/EditRecord";
+import EditRecord from "../../../components/Records/CreateRecord/EditRecord/EditRecord";
 
 const Create = () => {
-  return <CreateOrEditTransaction/>
+  return <EditRecord/>
 };
 
 export default Create;

@@ -1,12 +1,34 @@
 import axios from "axios";
 import { records } from "./axios";
+import type { CreateIncomeExpenseRecordParams, CreateTransferRecordParams } from "../types/types";
 
-export const getRecords = async () => {
+export const GetRecordsApi = async () => {
   try {
     const response = await records.get("/");
-    return response;
+    return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) return error.response;
+    if (axios.isAxiosError(error)) return error.response?.data;
     return error;
   }
 };
+
+export const CreateRecordApi = async (params:CreateIncomeExpenseRecordParams) => {
+try {
+  console.log(params)
+    const response = await records.post("/create",params);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) return error.response?.data;
+    return error;
+  }
+}
+
+export const CreateTransferRecordApi = async (params:CreateTransferRecordParams) => {
+  try {
+    const response = await records.post("/create/transfer_record",params);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) return error.response?.data;
+    return error;
+  }
+}

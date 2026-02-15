@@ -1,27 +1,22 @@
 import { XmarkCircle } from "iconoir-react";
 import * as math from "mathjs";
-import { useState } from "react";
-
 interface CalculatorButton {
   value: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 interface CalculatorProps {
-  amount:number
-  setAmount: React.Dispatch<React.SetStateAction<number>>
+  amount:string
+  setAmount: React.Dispatch<React.SetStateAction<string>>
   
 }
 
 const Calculator = (props: CalculatorProps) => {
-    const [amountString, setAmountString] = useState<string>(
-      props.amount.toString(),
-    );
   const NumberClicked = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     const value = e.currentTarget.innerText;
-    setAmountString((prev) => {
+    props.setAmount((prev) => {
       if(prev==="Error") prev=""
       return prev + value;
     });
@@ -29,17 +24,16 @@ const Calculator = (props: CalculatorProps) => {
 
   const evaluate = () => {
     try {
-      const result = math.evaluate(amountString);
+      const result = math.evaluate(props.amount);
       console.log(result);
-      setAmountString(String(result));
       props.setAmount(result)
     } catch (error) {
-      setAmountString("Error");
+      props.setAmount("Error");
     }
   };
 
   const handleBackSpace = () => {
-    setAmountString((prev) => {
+    props.setAmount((prev) => {
       return prev.toString().slice(0, prev.toString().length - 1) || "0";
     });
   };
@@ -66,7 +60,7 @@ const Calculator = (props: CalculatorProps) => {
       <>
         <div className="p-1">
           <div className="flex rounded border px-1 w-full focus:border-0 justify-end gap-2 py-3">
-            <span className="font-semibold text-4xl">{amountString}</span>
+            <span className="font-semibold text-4xl">{props.amount}</span>
             <XmarkCircle
               className="my-auto"
               onClick={handleBackSpace}
