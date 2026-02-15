@@ -1,5 +1,5 @@
 import type { account } from "../../../types/types";
-import CreateAccount from "../../CreatAccount/CreateAccount";
+import CreateAccount from "../CreatAccount/AddNewAccountButton";
 import Account from "./Account";
 
 interface AccountsListProps {

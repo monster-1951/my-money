@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MappedIcon from "../../../../UtilityComponent/MappedIcon";
+import MappedIcon from "../../../../UtilityComponents/MappedIcon";
 import SelectAccount from "./Select/SelectAccount";
 import type { account } from "../../../../../types/types";
 

@@ -1,6 +1,6 @@
 import type { account } from "../../../../../../types/types";
-import MappedIcon from "../../../../../UtilityComponent/MappedIcon";
-import CreateAccount from "../../../../../CreatAccount/CreateAccount";
+import MappedIcon from "../../../../../UtilityComponents/MappedIcon";
+import CreateAccount from "../../../../../Accounts/CreatAccount/AddNewAccountButton";
 
 interface SelectAccountProps {
     title:string

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MappedIcon from "../../../../UtilityComponent/MappedIcon";
+import MappedIcon from "../../../../UtilityComponents/MappedIcon";
 import SelectCategory from "./Select/SelectCategory";
 import type { Category, record_type } from "../../../../../types/types";
 
