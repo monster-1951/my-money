@@ -9,8 +9,8 @@ import AccountInput from "./Inputs/AccountInput";
 import CategoryInput from "./Inputs/CategoryInput";
 import TransferredToAccountInput from "./TransferToAccountInput";
 import { toast } from "react-toastify";
-import { GetCategories } from "../../../../../api/categories";
 import { GetAccountsapi } from "../../../../../api/accounts";
+import { GetCategoriesApi } from "../../../../../api/categories";
 
 interface AccountsAndCategoryInputInterface {
   record_type: record_type;
@@ -36,7 +36,7 @@ const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
     };
     const GetAllCategories = async () => {
       try {
-        const response = await GetCategories();
+        const response = await GetCategoriesApi();
         if (!response.categories) {
           toast.error(response.message);
         }
