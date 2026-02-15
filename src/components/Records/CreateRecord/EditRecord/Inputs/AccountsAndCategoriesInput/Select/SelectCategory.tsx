@@ -1,6 +1,7 @@
-import type { Category } from "../../../../../../types/types";
-import MappedIcon from "../../../../../UtilityComponents/MappedIcon";
-import AddNewCategoryButton from '../../../../../Categories/CreateCategory/AddNewCategory';
+import type { Category } from "../../../../../../../types/types";
+import AddNewCategoryButton from "../../../../../../Categories/CreateCategory/AddNewCategory";
+import MappedIcon from "../../../../../../UtilityComponents/MappedIcon";
+
 
 interface SelectCategoryProps {
   title:string;

@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import type { record_type } from "../../types/types";
+import type { record_type } from "../../../../types/types";
 import "react-datepicker/dist/react-datepicker.css";
-import TransactionType from "./TransactionType";
-import AccountsAndCategoryInput from "./RecordInput/SubComponents/AccountsAndCategoriesInput/AccountsAndCategoryInput";
-import NotePad from "./RecordInput/SubComponents/NotePad";
-import Calculator from "./RecordInput/SubComponents/Calculator";
-import DateInput from "./DateInput";
+import TransactionType from "./Inputs/TransactionType";
+import NotePad from "./Inputs/NotePad";
+import DateInput from "./Inputs/DateInput";
+import Calculator from "./Inputs/Calculator";
+import AccountsAndCategoryInput from "./Inputs/AccountsAndCategoriesInput/AccountsAndCategoryInput";
 
-const CreateOrEditTransactioinPage = () => {
+
+const EditRecord = () => {
   const [type, setType] = useState<record_type>("Expense");
   const [account, setAccount] = useState<number>(0);
   const [category, setCategory] = useState<number>(0);
@@ -54,4 +55,4 @@ const CreateOrEditTransactioinPage = () => {
   );
 };
 
-export default CreateOrEditTransactioinPage;
+export default EditRecord;

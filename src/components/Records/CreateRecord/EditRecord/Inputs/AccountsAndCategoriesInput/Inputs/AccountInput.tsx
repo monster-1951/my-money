@@ -1,7 +1,8 @@
 import { useState } from "react";
-import MappedIcon from "../../../../../UtilityComponents/MappedIcon";
 import SelectAccount from "../Select/SelectAccount";
-import type { account } from "../../../../../../types/types";
+import type { account } from "../../../../../../../types/types";
+import MappedIcon from "../../../../../../UtilityComponents/MappedIcon";
+
 
 interface AccountInputInterFace {
   accounts: account[];

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TransactionList from "./TransactionList";
 import type {
   financialMetric,
   GetAllRecordsResponse,
@@ -9,6 +8,7 @@ import { getRecords } from "../../api/records";
 import Decimal from "decimal.js";
 import { logout } from "../../api/auth";
 import HomeHeader from "./HomeHeader";
+import RecordList from "../Records/RecordList/RecordList";
 
 const HomePage = () => {
   const currentDate = new Date();
@@ -108,7 +108,7 @@ const HomePage = () => {
       >
         Logout
       </button>
-      <TransactionList Records={records} />
+      <RecordList Records={records} />
     </>
   );
 };

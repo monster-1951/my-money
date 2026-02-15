@@ -1,10 +1,10 @@
-import type { Record } from "../../types/types";
+import type { Record } from "../../../types/types";
 
 interface RecordsProps {
   Records: Record[] | undefined;
 }
 
-const TransactionList = (props: RecordsProps) => {
+const RecordList = (props: RecordsProps) => {
   console.log(props.Records);
   const renderTransactionRecord = props.Records?.length ? (
     props.Records.map((TransactionRecord: Record) => (
@@ -40,4 +40,4 @@ const TransactionList = (props: RecordsProps) => {
   return <div className="flex flex-1 min-h-screen">{renderTransactionRecord}</div>;
 };
 
-export default TransactionList;
+export default RecordList;

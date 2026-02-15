@@ -1,4 +1,4 @@
-import type { record_type } from "../../types/types"
+import type { record_type } from "../../../../../types/types"
 
 interface TransactionTypeProps{
     type:record_type

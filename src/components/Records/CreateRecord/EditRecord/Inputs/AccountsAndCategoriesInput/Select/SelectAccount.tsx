@@ -1,6 +1,7 @@
-import type { account } from "../../../../../../types/types";
-import MappedIcon from "../../../../../UtilityComponents/MappedIcon";
-import CreateAccount from "../../../../../Accounts/CreatAccount/AddNewAccountButton";
+import type { account } from "../../../../../../../types/types";
+import AddNewAccountButton from "../../../../../../Accounts/CreatAccount/AddNewAccountButton";
+import MappedIcon from "../../../../../../UtilityComponents/MappedIcon";
+
 
 interface SelectAccountProps {
   title:string
@@ -37,7 +38,7 @@ const SelectAccount = (props: SelectAccountProps) => {
               );
             })}
           </div>
-          <CreateAccount setAccounts={props.setAccounts}/>
+          <AddNewAccountButton setAccounts={props.setAccounts}/>
         </>
       </div>
     </>
