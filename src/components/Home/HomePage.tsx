@@ -9,7 +9,6 @@ import HomeHeader from "./HomeHeader";
 import RecordList from "../Records/RecordList/RecordList";
 import { DeleteRecordApi, GetRecordsApi } from "../../api/records";
 import EditRecord from "../Records/CreateRecord/EditRecord/EditRecord";
-import { DeleteAccountApi } from "../../api/accounts";
 import { toast } from "react-toastify";
 
 const HomePage = () => {
