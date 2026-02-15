@@ -3,10 +3,10 @@ import MappedIcon from "../../../../../UtilityComponents/MappedIcon";
 import CreateAccount from "../../../../../Accounts/CreatAccount/AddNewAccountButton";
 
 interface SelectAccountProps {
-    title:string
+  title:string
   accounts: account[];
   handleAccountChange: (option: account) => void;
-   setAccounts:React.Dispatch<React.SetStateAction<account[]>>
+  setAccounts:React.Dispatch<React.SetStateAction<account[]>>
 }
 const SelectAccount = (props: SelectAccountProps) => {
   return (

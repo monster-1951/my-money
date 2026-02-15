@@ -5,8 +5,8 @@ import type {
   Category,
 } from "../../../../../types/types";
 
-import AccountInput from "./AccountInput";
-import CategoryInput from "./CategoryInput";
+import AccountInput from "./Inputs/AccountInput";
+import CategoryInput from "./Inputs/CategoryInput";
 import TransferredToAccountInput from "./TransferToAccountInput";
 import { toast } from "react-toastify";
 import { Get } from "../../../../../api/accounts";
@@ -14,13 +14,13 @@ import { Get } from "../../../../../api/accounts";
 interface AccountsAndCategoryInputInterface {
   record_type: record_type;
   setAccount: React.Dispatch<React.SetStateAction<number>>;
-  categories: Category[];
   setCategory: React.Dispatch<React.SetStateAction<number>>;
   setTransferredToAccount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
   const [accounts, setAccounts] = useState<account[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
   useEffect(() => {
     const GetAllAccounts = async () => {
       try {
@@ -34,7 +34,20 @@ const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
         toast.error("Failed to fetch records");
       }
     };
+    const GetAllCategories = async () => {
+      try {
+        const response = await Get();
+        if (!response.categories) {
+          toast.error(response.message);
+        }
+        const allCategories = response.categories as Category[];
+        setCategories(allCategories);
+      } catch (error) {
+        toast.error("Failed to fetch records");
+      }
+    };
     GetAllAccounts();
+    GetAllCategories()
   }, []);
   return (
     <>
@@ -52,9 +65,10 @@ const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
         />
         {props.record_type !== "Transfer" && (
           <CategoryInput
-            categories={props.categories}
+            categories={categories}
             record_type={props.record_type}
             setCategory={props.setCategory}
+            setCategories={setCategories}
           />
         )}
         {props.record_type === "Transfer" && (

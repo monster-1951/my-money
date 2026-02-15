@@ -2,7 +2,6 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import type { record_type } from "../../types/types";
 import "react-datepicker/dist/react-datepicker.css";
-import { mockCategories } from "../../lib/constants";
 import TransactionType from "./TransactionType";
 import AccountsAndCategoryInput from "./RecordInput/SubComponents/AccountsAndCategoriesInput/AccountsAndCategoryInput";
 import NotePad from "./RecordInput/SubComponents/NotePad";
@@ -44,7 +43,6 @@ const CreateOrEditTransactioinPage = () => {
         <AccountsAndCategoryInput
           record_type={type}
           setAccount={setAccount}
-          categories={mockCategories}
           setCategory={setCategory}
           setTransferredToAccount={setTransferredToAccount}
         />

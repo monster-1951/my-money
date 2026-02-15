@@ -1,15 +1,16 @@
 import { useState } from "react";
-import MappedIcon from "../../../../UtilityComponents/MappedIcon";
-import SelectCategory from "./Select/SelectCategory";
-import type { Category, record_type } from "../../../../../types/types";
+import MappedIcon from "../../../../../UtilityComponents/MappedIcon";
+import SelectCategory from "../Select/SelectCategory";
+import type { Category, record_type } from "../../../../../../types/types";
 
 interface CategoryInputProps {
-    categories:Category[]
-    record_type:record_type
-     setCategory: React.Dispatch<React.SetStateAction<number>>;
+  categories: Category[];
+  setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
+  record_type: record_type;
+  setCategory: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const CategoryInput = (props:CategoryInputProps) => {
+const CategoryInput = (props: CategoryInputProps) => {
   const [categoryName, setCategoryName] = useState("Category");
   const [CategoryIcon, setCategoryIcon] = useState(31);
 
@@ -19,7 +20,7 @@ const CategoryInput = (props:CategoryInputProps) => {
     setSelctCategoryMenuOpen((prev) => !prev);
   };
 
-    const handleCategoryChange = (option: Category) => {
+  const handleCategoryChange = (option: Category) => {
     const name = option.name;
     const icon_id = option.icon;
     setCategoryIcon(icon_id || CategoryIcon);
@@ -47,6 +48,7 @@ const CategoryInput = (props:CategoryInputProps) => {
               (c) => c.category_type === props.record_type,
             )}
             handleCategoryChange={handleCategoryChange}
+            setCategories={props.setCategories}
           />
         </div>
       )}

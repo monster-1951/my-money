@@ -8,7 +8,7 @@ import { Get } from "../../api/categories";
 const CategoriesPage = () => {
   const [categories, setCategories] = useState<Category[]>([]);
    useEffect(() => {
-      const GetAllAccounts = async () => {
+      const GetAllCategories = async () => {
         try {
           const response = await Get();
           if (!response.categories) {
@@ -20,7 +20,7 @@ const CategoriesPage = () => {
           toast.error("Failed to fetch records");
         }
       };
-     GetAllAccounts()
+     GetAllCategories()
     }, []);
   return (
     <div className="min-h-screen">

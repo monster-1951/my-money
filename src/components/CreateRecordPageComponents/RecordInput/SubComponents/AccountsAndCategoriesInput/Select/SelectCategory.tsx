@@ -3,9 +3,10 @@ import MappedIcon from "../../../../../UtilityComponents/MappedIcon";
 import AddNewCategoryButton from '../../../../../Categories/CreateCategory/AddNewCategory';
 
 interface SelectCategoryProps {
-    title:string;
+  title:string;
   categories: Category[];
   handleCategoryChange:(option: Category) => void;
+  setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
 }
 const SelectCategory = (props: SelectCategoryProps) => {
   return (
@@ -31,7 +32,7 @@ const SelectCategory = (props: SelectCategoryProps) => {
                 </button>
               ))}
             </div>
-             <AddNewCategoryButton/>
+             <AddNewCategoryButton setCategories={props.setCategories} />
           </>
       </div>
     </>
