@@ -7,8 +7,10 @@ import type {
 import Decimal from "decimal.js";
 import HomeHeader from "./HomeHeader";
 import RecordList from "../Records/RecordList/RecordList";
-import { GetRecordsApi } from "../../api/records";
+import { DeleteRecordApi, GetRecordsApi } from "../../api/records";
 import EditRecord from "../Records/CreateRecord/EditRecord/EditRecord";
+import { DeleteAccountApi } from "../../api/accounts";
+import { toast } from "react-toastify";
 
 const HomePage = () => {
   const currentDate = new Date();
@@ -90,7 +92,19 @@ const HomePage = () => {
   }, []);
 
   const DeleteRecord = async (id:string) => {
-    alert(`Delete ${id}`)
+   try {
+         const response = await DeleteRecordApi({ id });
+         console.log(response);
+         if (response.deletedRecord) {
+           toast.success(response.message);
+           setRecords((prev) => prev?.filter((a) => a.id !== Number(id)));
+         } else {
+           toast.error(response.message || "Can't delete acount");
+         }
+       } catch (error) {
+         console.log(error);
+         toast.error("Failed to delete account");
+       }
   }
 
   const UpdateRecord = async (record:Record) => {

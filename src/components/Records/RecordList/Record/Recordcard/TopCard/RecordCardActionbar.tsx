@@ -19,6 +19,7 @@ const RecordCardActionBar = (props: RecordCardActionBarProps) => {
       <div className="flex gap-5">
         <Trash onClick={() => {
           props.DeleteRecord(String(props.Record.id))
+          props.setShowAccountDetails(prev=>!prev)
         }}/> <EditPencil onClick={() => {
           props.EditRecord(props.Record)
         }} />

@@ -32,3 +32,13 @@ export const CreateTransferRecordApi = async (params:CreateTransferRecordParams)
     return error;
   }
 }
+
+export const DeleteRecordApi = async (params:{id:string}) => {
+    try {
+    const response = await records.delete(`/delete/${params.id}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) return error.response?.data;
+    return error;
+  }
+}
