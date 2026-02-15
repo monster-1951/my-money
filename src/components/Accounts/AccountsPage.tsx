@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import AccountsHeader from "./AccountsHeader";
 import AccountsList from "./AccountsList/AccountsList";
-import { Get } from "../../api/accounts";
 import { toast } from "react-toastify";
 import type { account } from "../../types/types";
+import { GetAccountsapi } from "../../api/accounts";
 
 const AccountsPage = () => {
   const [accounts, setAccounts] = useState<account[]>([]);
@@ -11,7 +11,7 @@ const AccountsPage = () => {
   useEffect(() => {
     const GetAllAccounts = async () => {
       try {
-        const response = await Get();
+        const response = await GetAccountsapi();
         if (!response.allAccounts) {
           toast.error(response.message);
         }

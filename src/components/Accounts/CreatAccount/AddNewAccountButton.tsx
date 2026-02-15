@@ -1,21 +1,21 @@
 import { PlusCircle } from "iconoir-react";
 import { useState } from "react";
-import EditAccount from "./EditAccount";
-import { Create } from "../../api/accounts";
+import EditAccount from "./EditAccount/EditAccount";
 import { toast } from "react-toastify";
-import type { account, SaveAccountParams } from "../../types/types";
+import type { account, SaveAccountParams } from "../../../types/types";
+import { CreateAccountApi } from "../../../api/accounts";
 
-interface CreateAccountProps {
+interface AddNewAccountButtonProps {
   setAccounts: React.Dispatch<React.SetStateAction<account[]>>;
 }
 
-const CreateAccount = (props: CreateAccountProps) => {
+const AddNewAccountButton = (props: AddNewAccountButtonProps) => {
   const [createOrEditAccountDialogOpen, setCreateOrEditAccountDialogOpen] =
     useState(false);
 
   const CreateNewAccount = async (params: SaveAccountParams) => {
     try {
-      const response = await Create(params.data);
+      const response = await CreateAccountApi(params.data);
       console.log(response);
       if (response.newAccount) {
         toast.success(response.message);
@@ -50,4 +50,4 @@ const CreateAccount = (props: CreateAccountProps) => {
   );
 };
 
-export default CreateAccount;
+export default AddNewAccountButton;

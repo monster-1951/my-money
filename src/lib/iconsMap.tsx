@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import {
   Car,
   Shirt,
@@ -33,16 +32,15 @@ import {
   LightBulbOn,
   Potion,
   Bank,
+  Suitcase,
 } from "iconoir-react";
+import type { Icons } from "../types/types";
 
-interface IconsMapInterface {
-  icon_id: number;
-  element: ReactNode;
-}
+
 
 const IconClass = "";
 
-export const IconsMap: IconsMapInterface[] = [
+export const IconsMap: Icons[] = [
   { icon_id: 1, element: <Wallet className={IconClass} /> },
   { icon_id: 2, element: <CreditCard className={IconClass} /> },
   { icon_id: 3, element: <Bank className={IconClass} /> },
@@ -88,6 +86,7 @@ export const IconsMap: IconsMapInterface[] = [
   { icon_id: 31, element: <Flower className={IconClass} /> },
   { icon_id: 32, element: <Group className={IconClass} /> },
   { icon_id: 33, element: <Restart className={IconClass} /> },
+   { icon_id: 34, element: <Suitcase className={IconClass} /> },
 ];
 
 export const accountIconsMap = IconsMap.slice(0,11)

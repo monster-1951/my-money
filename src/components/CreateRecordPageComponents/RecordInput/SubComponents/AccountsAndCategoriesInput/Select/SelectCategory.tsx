@@ -1,12 +1,12 @@
-import {PlusCircle} from 'iconoir-react'
-import { Link } from "react-router-dom";
 import type { Category } from "../../../../../../types/types";
-import MappedIcon from "../../../../../UtilityComponent/MappedIcon";
+import MappedIcon from "../../../../../UtilityComponents/MappedIcon";
+import AddNewCategoryButton from '../../../../../Categories/CreateCategory/AddNewCategory';
 
 interface SelectCategoryProps {
-    title:string;
+  title:string;
   categories: Category[];
   handleCategoryChange:(option: Category) => void;
+  setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
 }
 const SelectCategory = (props: SelectCategoryProps) => {
   return (
@@ -32,12 +32,7 @@ const SelectCategory = (props: SelectCategoryProps) => {
                 </button>
               ))}
             </div>
-            <Link to={"/"}>
-              <button className="border flex justify-center p-2 gap-3 w-fit mx-auto">
-                <PlusCircle />
-                <span>ADD NEW CATEGORY</span>
-              </button>
-            </Link>
+             <AddNewCategoryButton setCategories={props.setCategories} />
           </>
       </div>
     </>

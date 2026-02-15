@@ -1,9 +1,15 @@
 import type { AxiosResponse } from "axios";
 import type Decimal from "decimal.js";
+import type { ReactNode } from "react";
 
 export interface financialMetric {
   name: string;
   value: Decimal;
+}
+
+export interface Icons {
+  icon_id: number;
+  element: ReactNode;
 }
 
 export interface sessionUser {
@@ -74,5 +80,16 @@ export interface GetAllRecordsResponse extends AxiosResponse {
 
 export interface SaveAccountParams {
   data: { name: string; balance: number; icon: number };
+  id: string;
+}
+
+export interface CreateCategoryParams {
+  name: string;
+  category_type: category_type;
+  icon: number;
+}
+
+export interface SaveCategoryParams {
+  data: CreateCategoryParams;
   id: string;
 }

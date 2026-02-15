@@ -1,12 +1,12 @@
 import type { account } from "../../../../../../types/types";
-import MappedIcon from "../../../../../UtilityComponent/MappedIcon";
-import CreateAccount from "../../../../../CreatAccount/CreateAccount";
+import MappedIcon from "../../../../../UtilityComponents/MappedIcon";
+import CreateAccount from "../../../../../Accounts/CreatAccount/AddNewAccountButton";
 
 interface SelectAccountProps {
-    title:string
+  title:string
   accounts: account[];
   handleAccountChange: (option: account) => void;
-   setAccounts:React.Dispatch<React.SetStateAction<account[]>>
+  setAccounts:React.Dispatch<React.SetStateAction<account[]>>
 }
 const SelectAccount = (props: SelectAccountProps) => {
   return (
