@@ -68,7 +68,7 @@ const Account = (props: AccountProps) => {
           <div>{props.account.name}</div>
           <div>
             Balance :
-            <span className="text-green-500">{props.account.balance}</span>
+            <span className="text-green-500 px-3">&#8377;{Number(props.account.balance).toFixed(2)}</span>
           </div>
         </div>
         <DropDown
