@@ -2,7 +2,7 @@ import axios from "axios";
 import { categories } from "./axios";
 import type { CreateCategoryParams, SaveCategoryParams } from "../types/types";
 
-export const Get = async () => {
+export const GetCategoriesApi = async () => {
   try {
     const response = await categories.get(`/`);
     console.log(response);
@@ -13,7 +13,7 @@ export const Get = async () => {
   }
 };
 
-export const Create = async (params: CreateCategoryParams) => {
+export const CreateCategoryApi = async (params: CreateCategoryParams) => {
   try {
     const response = await categories.post("/create", params);
     console.log(response);
@@ -24,7 +24,7 @@ export const Create = async (params: CreateCategoryParams) => {
   }
 };
 
-export const Update = async (params: SaveCategoryParams) => {
+export const UpdateCategoryApi = async (params: SaveCategoryParams) => {
   try {
     const response = await categories.put(`/update/${params.id}`, params.data);
     console.log(response);
@@ -35,7 +35,7 @@ export const Update = async (params: SaveCategoryParams) => {
   }
 };
 
-export const Delete = async (params: {
+export const DeleteCategoryApi = async (params: {
   id: string;
 }) => {
   try {

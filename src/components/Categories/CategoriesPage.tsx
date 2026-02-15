@@ -3,14 +3,15 @@ import CategoryList from "./CategoryList/CategoryList";
 import AddNewCategoryButton from "./CreateCategory/AddNewCategory";
 import { toast } from "react-toastify";
 import type { Category } from "../../types/types";
-import { Get } from "../../api/categories";
+import { GetCategoriesApi } from "../../api/categories";
+
 
 const CategoriesPage = () => {
   const [categories, setCategories] = useState<Category[]>([]);
    useEffect(() => {
       const GetAllCategories = async () => {
         try {
-          const response = await Get();
+          const response = await GetCategoriesApi();
           if (!response.categories) {
             toast.error(response.message);
           }

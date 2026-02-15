@@ -9,7 +9,8 @@ import AccountInput from "./Inputs/AccountInput";
 import CategoryInput from "./Inputs/CategoryInput";
 import TransferredToAccountInput from "./TransferToAccountInput";
 import { toast } from "react-toastify";
-import { Get } from "../../../../../api/accounts";
+import { GetCategories } from "../../../../../api/categories";
+import { GetAccountsapi } from "../../../../../api/accounts";
 
 interface AccountsAndCategoryInputInterface {
   record_type: record_type;
@@ -24,11 +25,10 @@ const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
   useEffect(() => {
     const GetAllAccounts = async () => {
       try {
-        const response = await Get();
+        const response = await GetAccountsapi();
         if (!response.allAccounts) {
           toast.error(response.message);
         }
-
         setAccounts(response.allAccounts);
       } catch (error) {
         toast.error("Failed to fetch records");
@@ -36,7 +36,7 @@ const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
     };
     const GetAllCategories = async () => {
       try {
-        const response = await Get();
+        const response = await GetCategories();
         if (!response.categories) {
           toast.error(response.message);
         }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { accounts } from "./axios";
 
-export const Get = async () => {
+export const GetAccountsapi = async () => {
   try {
     const response = await accounts.get(`/`);
     console.log(response);
@@ -12,7 +12,7 @@ export const Get = async () => {
   }
 };
 
-export const Create = async (params: {
+export const CreateAccountApi = async (params: {
   name: string;
   balance: number;
   icon: number;
@@ -27,7 +27,7 @@ export const Create = async (params: {
   }
 };
 
-export const Update = async (params: {
+export const UpdateAccountApi = async (params: {
   data: { name: string; balance: number; icon: number };
   id: string;
 }) => {
@@ -41,7 +41,7 @@ export const Update = async (params: {
   }
 };
 
-export const Delete = async (params: {
+export const DeleteAccountApi = async (params: {
   id: string;
 }) => {
   try {

@@ -2,9 +2,9 @@ import { useState } from "react";
 import type { account, SaveAccountParams } from "../../../types/types";
 import MappedIcon from "../../UtilityComponents/MappedIcon";
 import EditAccount from "../CreatAccount/EditAccount/EditAccount";
-import { Delete, Update } from "../../../api/accounts";
 import { toast } from "react-toastify";
 import DropDown from "../../UtilityComponents/DropDown";
+import { DeleteAccountApi, UpdateAccountApi } from "../../../api/accounts";
 
 interface AccountProps {
   account: account;
@@ -18,7 +18,7 @@ const Account = (props: AccountProps) => {
 
   const UpdateAccount = async (params: SaveAccountParams) => {
     try {
-      const response = await Update(params);
+      const response = await UpdateAccountApi(params);
       console.log(response);
       if (response.updatedAccount) {
         toast.success(response.message);
@@ -43,7 +43,7 @@ const Account = (props: AccountProps) => {
 
   const deleteAccount = async (id: string) => {
     try {
-      const response = await Delete({ id });
+      const response = await DeleteAccountApi({ id });
       console.log(response);
       if (response.deletedAccount) {
         toast.success(response.message);

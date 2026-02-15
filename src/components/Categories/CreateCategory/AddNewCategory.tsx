@@ -3,7 +3,7 @@ import EditCategory from "./EditCategory/EditCategory";
 import { useState } from "react";
 import type { Category, SaveCategoryParams } from "../../../types/types";
 import { toast } from "react-toastify";
-import { Create } from "../../../api/categories";
+import { CreateCategoryApi } from "../../../api/categories";
 
 interface AddNewAccountButtonProps {
   setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
@@ -14,7 +14,7 @@ const AddNewCategoryButton = (props: AddNewAccountButtonProps) => {
     useState(false);
   const CreateNewCategory = async (params: SaveCategoryParams) => {
     try {
-      const response = await Create(params.data);
+      const response = await CreateCategoryApi(params.data);
       console.log(response);
       if (response.newCategory) {
         props.setCategories((prev) => [...prev, response.newCategory]);

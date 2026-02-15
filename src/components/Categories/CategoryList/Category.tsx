@@ -3,8 +3,8 @@ import type { Category, SaveCategoryParams } from "../../../types/types";
 import MappedIcon from "../../UtilityComponents/MappedIcon";
 import EditCategory from "../CreateCategory/EditCategory/EditCategory";
 import DropDown from "../../UtilityComponents/DropDown";
-import { Delete, Update } from "../../../api/categories";
 import { toast } from "react-toastify";
+import { DeleteCategoryApi, UpdateCategoryApi } from "../../../api/categories";
 
 interface CategoryProps {
   category: Category;
@@ -18,7 +18,7 @@ const SingleCategory = (props: CategoryProps) => {
 
   const UpdateCategory = async (params: SaveCategoryParams) => {
     try {
-      const response = await Update(params);
+      const response = await UpdateCategoryApi(params);
       console.log(response);
       if (response.updatedCategory) {
         toast.success(response.message);
@@ -43,7 +43,7 @@ const SingleCategory = (props: CategoryProps) => {
 
   const deleteCategory = async (id: string) => {
     try {
-      const response = await Delete({ id });
+      const response = await DeleteCategoryApi({ id });
       console.log(response);
       if (response.deletedCategory) {
         toast.success(response.message);
