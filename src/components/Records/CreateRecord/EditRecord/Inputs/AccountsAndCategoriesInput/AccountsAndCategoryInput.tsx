@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import type {
-  record_type,
-  account,
-  Category,
-} from "../../../../../types/types";
+
 
 import AccountInput from "./Inputs/AccountInput";
 import CategoryInput from "./Inputs/CategoryInput";
 import TransferredToAccountInput from "./TransferToAccountInput";
 import { toast } from "react-toastify";
-import { GetAccountsapi } from "../../../../../api/accounts";
-import { GetCategoriesApi } from "../../../../../api/categories";
+import type { account, Category, record_type } from "../../../../../../types/types";
+import { GetAccountsapi } from "../../../../../../api/accounts";
+import { GetCategoriesApi } from "../../../../../../api/categories";
 
 interface AccountsAndCategoryInputInterface {
   record_type: record_type;

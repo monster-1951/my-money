@@ -33,10 +33,9 @@ import {
   Potion,
   Bank,
   Suitcase,
+  DataTransferBoth,
 } from "iconoir-react";
 import type { Icons } from "../types/types";
-
-
 
 const IconClass = "";
 
@@ -86,7 +85,8 @@ export const IconsMap: Icons[] = [
   { icon_id: 31, element: <Flower className={IconClass} /> },
   { icon_id: 32, element: <Group className={IconClass} /> },
   { icon_id: 33, element: <Restart className={IconClass} /> },
-   { icon_id: 34, element: <Suitcase className={IconClass} /> },
+  { icon_id: 34, element: <Suitcase className={IconClass} /> },
+  { icon_id: 35, element: <DataTransferBoth className={IconClass} /> },
 ];
 
-export const accountIconsMap = IconsMap.slice(0,11)
+export const accountIconsMap = IconsMap.slice(0, 11);

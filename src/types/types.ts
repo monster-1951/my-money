@@ -93,3 +93,21 @@ export interface SaveCategoryParams {
   data: CreateCategoryParams;
   id: string;
 }
+
+export interface CreateIncomeExpenseRecordParams {
+  type: "Income" | "Expense"
+  amount:number;
+  account_id:number;
+  time:string;
+  category_id:number;
+  notes?:string;
+}
+
+export interface CreateTransferRecordParams {
+  type:"Transfer";
+  amount:number;
+  account_id:number;
+  time:string;
+  notes?:string;
+  transferred_to_account_id:number;
+}
