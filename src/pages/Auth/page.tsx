@@ -5,6 +5,7 @@ import AuthForm from "../../components/AuthForm";
 import type { formField } from "../../types/types";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import LoadingPage from "../../components/UtilityComponents/Loading";
 
 interface AuthProps {
   register: boolean;
@@ -162,7 +163,7 @@ const Auth = (props: AuthProps) => {
   if (loading)
     return (
       <AuthLayout>
-        <div className="w-fit mx-auto">Please wait...</div>
+        <LoadingPage/>
       </AuthLayout>
     );
   return (

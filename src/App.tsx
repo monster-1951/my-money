@@ -13,6 +13,7 @@ import Analysis from "./pages/app/analysis/page";
 import Create from "./pages/app/create/page";
 import Accounts from "./pages/app/accounts/page";
 import Categories from "./pages/app/categories/page";
+import LoadingPage from "./components/UtilityComponents/Loading";
 
 
 
@@ -90,7 +91,7 @@ function App() {
         />
       </>
     );
-  } else if (!bootStrapped) return <>Loading</>;
+  } else if (!bootStrapped) return <><LoadingPage/></>;
   else
     return (
       <>
