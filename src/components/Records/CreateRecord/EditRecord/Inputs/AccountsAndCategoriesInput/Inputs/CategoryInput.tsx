@@ -1,20 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Category, record_type } from "../../../../../../../types/types";
 import MappedIcon from "../../../../../../UtilityComponents/MappedIcon";
 import SelectCategory from "../Select/SelectCategory";
-
 
 interface CategoryInputProps {
   categories: Category[];
   setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
   record_type: record_type;
   setCategory: React.Dispatch<React.SetStateAction<number>>;
+  category: number;
 }
 
 const CategoryInput = (props: CategoryInputProps) => {
   const [categoryName, setCategoryName] = useState("Category");
   const [CategoryIcon, setCategoryIcon] = useState(31);
-
   const [selctCategoryMenuOpen, setSelctCategoryMenuOpen] = useState(false);
 
   const ToggleCategoryMenu = () => {
@@ -29,6 +28,16 @@ const CategoryInput = (props: CategoryInputProps) => {
     props.setCategory(Number(option.id));
     setSelctCategoryMenuOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    const selectedCategory = props.categories.find(
+      (c) => c.id === props.category,
+    );
+    if (selectedCategory) {
+      setCategoryName(selectedCategory.name);
+      setCategoryIcon(selectedCategory.icon);
+    }
+  });
 
   return (
     <>

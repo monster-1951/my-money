@@ -8,13 +8,11 @@ import Decimal from "decimal.js";
 import HomeHeader from "./HomeHeader";
 import RecordList from "../Records/RecordList/RecordList";
 import { DeleteRecordApi, GetRecordsApi } from "../../api/records";
-import EditRecord from "../Records/CreateRecord/EditRecord/EditRecord";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const currentDate = new Date();
-  const [updateRecord,setUpdateRecord] = useState(false)
-  const [recordToUpdate,setRecordToUpdate] = useState<Record>()
   const [Year, setYear] = useState<number>(currentDate.getFullYear());
   const [Month, setMonth] = useState<number>(currentDate.getMonth());
   const [loading, setLoading] = useState<boolean>(false);
@@ -22,6 +20,7 @@ const HomePage = () => {
   const [income, setIncome] = useState<Decimal>(new Decimal(0));
   const [balance, setBalance] = useState<Decimal>(new Decimal(0));
   const [records, setRecords] = useState<Record[]>();
+  const navigate = useNavigate()
   const financialMetricsForHeader: financialMetric[] = [
     {
       name: "EXPENSE",
@@ -107,28 +106,25 @@ const HomePage = () => {
   }
 
   const UpdateRecord = async (record:Record) => {
-    setRecordToUpdate(record)
-    setUpdateRecord(true)
+    navigate("/create",{
+      state:{record}
+    })
   }
   if (loading) {
     return <>Loading...</>;
   }
-  if(!updateRecord){
-    return (
-      <>
-        <HomeHeader
-          Month={Month}
-          Year={Year}
-          financialMetricsForHeader={financialMetricsForHeader}
-          handleNextMonth={handleNextMonth}
-          handlePrevMonth={handlePrevMonth}
-        />
-        <RecordList Records={records} DeleteRecord={DeleteRecord}  EditRecord={UpdateRecord}/>
-      </>
-    );
-  } else {
-    return <EditRecord Record={recordToUpdate}/>
-  }
+  return (
+    <>
+      <HomeHeader
+        Month={Month}
+        Year={Year}
+        financialMetricsForHeader={financialMetricsForHeader}
+        handleNextMonth={handleNextMonth}
+        handlePrevMonth={handlePrevMonth}
+      />
+      <RecordList Records={records} DeleteRecord={DeleteRecord}  EditRecord={UpdateRecord}/>
+    </>
+  );
 };
 
 export default HomePage;

@@ -24,7 +24,7 @@ const RecordItem = (props: RecordProps) => {
         onClick={handleRecordClick}
       >
         <MappedIcon
-          id={props.Record.category || 35}
+          id={props.Record.categories?.icon || 35}
           className="text-lg rounded-full my-auto p-2 border"
         />
         <div className="flex justify-between w-full border-b">

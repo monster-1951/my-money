@@ -11,9 +11,12 @@ import { GetCategoriesApi } from "../../../../../../api/categories";
 
 interface AccountsAndCategoryInputInterface {
   record_type: record_type;
+  account:number;
+  category:number;
   setAccount: React.Dispatch<React.SetStateAction<number>>;
   setCategory: React.Dispatch<React.SetStateAction<number>>;
   setTransferredToAccount: React.Dispatch<React.SetStateAction<number>>;
+  transferred_to_account:number
 }
 
 const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
@@ -59,6 +62,7 @@ const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
           accounts={accounts}
           setAccount={props.setAccount}
           setAccounts={setAccounts}
+          account={props.account}
         />
         {props.record_type !== "Transfer" && (
           <CategoryInput
@@ -66,6 +70,7 @@ const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
             record_type={props.record_type}
             setCategory={props.setCategory}
             setCategories={setCategories}
+            category={props.category}
           />
         )}
         {props.record_type === "Transfer" && (
@@ -73,6 +78,7 @@ const AccountsAndCategoryInput = (props: AccountsAndCategoryInputInterface) => {
             accounts={accounts}
             setTransferredToAccount={props.setTransferredToAccount}
             setAccounts={setAccounts}
+            transferred_to_account={props.transferred_to_account}
           />
         )}
       </div>

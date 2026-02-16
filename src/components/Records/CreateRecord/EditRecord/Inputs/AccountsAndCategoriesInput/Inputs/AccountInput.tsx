@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectAccount from "../Select/SelectAccount";
 import type { account } from "../../../../../../../types/types";
 import MappedIcon from "../../../../../../UtilityComponents/MappedIcon";
@@ -8,6 +8,7 @@ interface AccountInputInterFace {
   accounts: account[];
   setAccounts: React.Dispatch<React.SetStateAction<account[]>>;
   setAccount: React.Dispatch<React.SetStateAction<number>>;
+  account:number
 }
 
 const AccountInput = (props: AccountInputInterFace) => {
@@ -26,6 +27,14 @@ const AccountInput = (props: AccountInputInterFace) => {
     props.setAccount(Number(option.id));
     setSelectAccountMenuOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    const selectedAccount = props.accounts.find(a=>a.id===props.account)
+    if(selectedAccount){
+      setAccountIcon(selectedAccount.icon)
+      setAccountName(selectedAccount.name)
+    }
+  })
   return (
     <>
       <button

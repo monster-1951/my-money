@@ -111,3 +111,17 @@ export interface CreateTransferRecordParams {
   notes?:string;
   transferred_to_account_id:number;
 }
+
+export interface RecordDataToModify {
+  type: record_type;
+  amount: number;
+  account_id: number;
+  transferred_to_account_id: number | null;
+  time: string;
+  category_id: number | null;
+  notes: string;
+}
+export interface UpdateRecordParams {
+  id: number;
+  data: RecordDataToModify;
+}

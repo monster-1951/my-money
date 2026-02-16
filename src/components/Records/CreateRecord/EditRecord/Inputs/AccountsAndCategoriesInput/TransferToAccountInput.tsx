@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectAccount from "./Select/SelectAccount";
 import MappedIcon from "../../../../../UtilityComponents/MappedIcon";
 import type { account } from "../../../../../../types/types";
@@ -7,6 +7,7 @@ interface TransferredToAccountInputProps {
   setTransferredToAccount: React.Dispatch<React.SetStateAction<number>>;
   accounts: account[];
   setAccounts: React.Dispatch<React.SetStateAction<account[]>>;
+  transferred_to_account: number;
 }
 
 const TransferredToAccountInput = (props: TransferredToAccountInputProps) => {
@@ -26,8 +27,17 @@ const TransferredToAccountInput = (props: TransferredToAccountInputProps) => {
     setTransferredToAccountIcon(icon_id || transferredToAccountIcon);
     setTransferredToAccountName(name || "To Account");
     props.setTransferredToAccount(Number(option.id));
-    setSelectTransferToAccountMenuOpen(prev=>!prev)
+    setSelectTransferToAccountMenuOpen((prev) => !prev);
   };
+  useEffect(() => {
+    const selectedAccount = props.accounts.find(
+      (a) => a.id === props.transferred_to_account,
+    );
+    if (selectedAccount) {
+      setTransferredToAccountIcon(selectedAccount.icon);
+      setTransferredToAccountName(selectedAccount.name);
+    }
+  });
   return (
     <>
       <button
