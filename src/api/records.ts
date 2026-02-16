@@ -6,9 +6,14 @@ import type {
   UpdateRecordParams,
 } from "../types/types";
 
-export const GetRecordsApi = async () => {
+export const GetRecordsApi = async (month:string,nextMonth:string) => {
   try {
-    const response = await records.get("/");
+    const response = await records.get("/",{
+       params:{
+         time_gte:`2026-${month}-01T00:00:00.000Z`,
+         time_lt:`2026-${nextMonth}-01T00:00:00.000Z`,
+       }
+    });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) return error.response?.data;
