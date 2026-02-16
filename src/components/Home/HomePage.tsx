@@ -10,6 +10,7 @@ import RecordList from "../Records/RecordList/RecordList";
 import { DeleteRecordApi, GetRecordsApi } from "../../api/records";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import LoadingPage from "../UtilityComponents/Loading";
 
 const HomePage = () => {
   const currentDate = new Date();
@@ -115,7 +116,7 @@ const HomePage = () => {
     });
   };
   if (loading) {
-    return <>Loading...</>;
+    return <><LoadingPage/></>;
   }
   return (
     <>
