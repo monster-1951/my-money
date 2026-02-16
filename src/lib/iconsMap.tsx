@@ -37,7 +37,7 @@ import {
 } from "iconoir-react";
 import type { Icons } from "../types/types";
 
-const IconClass = "";
+const IconClass = "bg-gray-700 text-white";
 
 export const IconsMap: Icons[] = [
   { icon_id: 1, element: <Wallet className={IconClass} /> },
