@@ -91,13 +91,8 @@ const EditRecord = () => {
   };
 
   useEffect(() => {
-    if (location.state.record) {
-      console.log("location.state", location.state.record.time);
+    if (location.state) {
       setRecord(location.state?.record);
-      Record &&
-        console.log("Record State",
-        Record
-        );
       setType(location.state.record.type || "Expense");
       setAccount(Number((location.state.record.account || 0).toString()));
       setCategory(location.state.record.category || 0);
@@ -105,7 +100,7 @@ const EditRecord = () => {
       setNotes(location.state.record.notes || "");
       setDate(new Date(location.state.record.time));
       setAmountString(location.state.record.amount || "0");
-    }
+    } 
   }, []);
   const createRecord = async () => {
     const params = constructParamsToSaveRecord();
