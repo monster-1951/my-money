@@ -13,7 +13,7 @@ import RecordItem from "./Record";
           const Records = props.RecordsGroupedByDay[key];
           if (Records?.length)
             return (
-              <div className="py-5">
+              <div className="pb-5">
                 <div className="p-3 font-bold border-b">{new Date(key).toDateString().slice(4)}</div>
                 {Records.map((Record: Record) => (
                   <RecordItem
