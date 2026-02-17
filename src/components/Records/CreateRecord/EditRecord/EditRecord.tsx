@@ -21,11 +21,9 @@ import {
 } from "../../../../api/records";
 import { toast } from "react-toastify";
 
-
-
 const EditRecord = () => {
-  const location = useLocation()
-  const [Record,setRecord] = useState<Record>()
+  const location = useLocation();
+  const [Record, setRecord] = useState<Record>();
   const [type, setType] = useState<record_type>("Expense");
   const [account, setAccount] = useState<number>(0);
   const [category, setCategory] = useState<number>(0);
@@ -93,25 +91,20 @@ const EditRecord = () => {
   };
 
   useEffect(() => {
-    setRecord(location.state?.record)
-    if (Record) {
-      console.log(
-        Record.account,
-        Record.category,
-        Record.transferred_to_account,
-      );
-      setType(Record.type);
-      setAccount(Number(Record.account.toString()));
-      setCategory(Record.category);
-      setTransferredToAccount(Record.transferred_to_account || 0);
-      setNotes(Record.notes);
-      setDate(new Date(Record.time));
-      setAmountString(Record.amount);
-      console.log("Data", {
-        account,
-        category,
-        transferredToAccount,
-      });
+    if (location.state.record) {
+      console.log("location.state", location.state.record.time);
+      setRecord(location.state?.record);
+      Record &&
+        console.log("Record State",
+        Record
+        );
+      setType(location.state.record.type || "Expense");
+      setAccount(Number((location.state.record.account || 0).toString()));
+      setCategory(location.state.record.category || 0);
+      setTransferredToAccount(location.state.record.transferred_to_account);
+      setNotes(location.state.record.notes || "");
+      setDate(new Date(location.state.record.time));
+      setAmountString(location.state.record.amount || "0");
     }
   }, []);
   const createRecord = async () => {
@@ -131,31 +124,31 @@ const EditRecord = () => {
       toast.error("Failed to create record");
     }
   };
-  const updateRecord = async(id:number) => {
+  const updateRecord = async (id: number) => {
     const params = constructParamsToUpdateRecord(id);
-      try {
-        const response =
-          params.data.type !== "Transfer"
-            ? await UpdateToIncomeExpenseRecordApi(params)
-            : await UpdateToTransferRecordApi(params);
-        if (response.UpdatedRecord) {
-          toast.success(response.message);
-          navigate("/");
-        } else {
-          console.log(response)
-          toast.error(response.message || "Something went wrong");
-        }
-      } catch (error) {
-        toast.error("Failed to update record");
+    try {
+      const response =
+        params.data.type !== "Transfer"
+          ? await UpdateToIncomeExpenseRecordApi(params)
+          : await UpdateToTransferRecordApi(params);
+      if (response.UpdatedRecord) {
+        toast.success(response.message);
+        navigate("/");
+      } else {
+        console.log(response);
+        toast.error(response.message || "Something went wrong");
       }
-  }
+    } catch (error) {
+      toast.error("Failed to update record");
+    }
+  };
   const saveRecord = async () => {
-    if(!Number(amountString)){
-      toast.error("Amount can't be zero!")
-      return
+    if (!Number(amountString)) {
+      toast.error("Amount can't be zero!");
+      return;
     }
     if (location.state?.record && Record) {
-      await updateRecord(Record.id)
+      await updateRecord(Record.id);
     } else {
       await createRecord();
     }
