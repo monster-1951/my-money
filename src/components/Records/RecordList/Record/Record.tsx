@@ -27,7 +27,7 @@ const RecordItem = (props: RecordProps) => {
           id={props.Record.categories?.icon || 35}
           className="text-lg rounded-full my-auto p-2 border"
         />
-        <div className="flex justify-between w-full border-b">
+        <div className="flex justify-between w-full border-b border-gray-700">
           <div className="flex flex-col">
             <span>{props.Record.categories?.name || "Transfer"}</span>
             <AccountDetails Record={props.Record} />

@@ -125,3 +125,7 @@ export interface UpdateRecordParams {
   id: number;
   data: RecordDataToModify;
 }
+
+export interface GroupedByDateInterface {
+  [key: string]: Record[] | undefined;
+}
