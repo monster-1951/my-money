@@ -1,5 +1,4 @@
-import type { Record } from "../../../types/types";
-import RecordItem from "./Record/Record";
+import type { GroupedByDateInterface, Record } from "../../../types/types";
 import RecordsByDay from "./Record/RecordsByDay";
 
 interface RecordsProps {
