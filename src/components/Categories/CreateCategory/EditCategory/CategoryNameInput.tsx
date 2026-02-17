@@ -12,7 +12,7 @@ const CategoryNameInput = (props: CategoryNameInputProps) => {
       <span>Name</span>
       <input
         type="text"
-        placeholder="Account name"
+        placeholder="Category name"
         className="border p-3 focus:border-0"
         value={props.categoryName}
         onChange={handlCategoryNameChange}
