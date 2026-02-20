@@ -21,6 +21,8 @@ const HomePage = () => {
   const [income, setIncome] = useState<Decimal>(new Decimal(0));
   const [balance, setBalance] = useState<Decimal>(new Decimal(0));
   const [records, setRecords] = useState<Record[]>();
+  const [deleteConfirmationBox, setDeleteConfirmationBox] = useState(false);
+  const [idOfRecordToBeDeleted,setIdOfRecordToBeDeleted] = useState("")
   const navigate = useNavigate();
   const financialMetricsForHeader: financialMetric[] = [
     {
@@ -94,6 +96,11 @@ const HomePage = () => {
     InitializeRecordsData();
   }, [Month]);
 
+  const handleDeleteRecord = async (id:string) => {
+    setDeleteConfirmationBox(true)
+    setIdOfRecordToBeDeleted(id)
+  }
+
   const DeleteRecord = async (id: string) => {
     try {
       const response = await DeleteRecordApi({ id });
@@ -107,6 +114,8 @@ const HomePage = () => {
     } catch (error) {
       console.log(error);
       toast.error("Failed to delete account");
+    } finally {
+      setDeleteConfirmationBox(false)
     }
   };
 
@@ -116,7 +125,11 @@ const HomePage = () => {
     });
   };
   if (loading) {
-    return <><LoadingPage/></>;
+    return (
+      <>
+        <LoadingPage />
+      </>
+    );
   }
   return (
     <>
@@ -129,9 +142,36 @@ const HomePage = () => {
       />
       <RecordList
         Records={records}
-        DeleteRecord={DeleteRecord}
+        DeleteRecord={handleDeleteRecord}
         EditRecord={UpdateRecord}
       />
+      {deleteConfirmationBox && (
+        <div className="fixed inset-0 bg-black/30 flex items-center z-10 justify-center">
+          <div className="flex flex-col">
+            <div className="bg-red-500 text-white p-5 rounded-t-xl">
+              <div className="text-xl font-bold">Delete this record ?</div>
+              <div className="flex justify-center font-semibold text-lg">
+                Are you sure ?
+              </div>
+            </div>
+            <div className="bg-white p-5 rounded-b-xl">
+              <div className="flex justify-around p-3">
+                <button
+                  className="border px-4 py-1 rounded"
+                  onClick={() => {
+                    setDeleteConfirmationBox(false);
+                  }}
+                >
+                  NO
+                </button>
+                <button className="border px-4 py-1 rounded" onClick={async() => {
+                  await DeleteRecord(idOfRecordToBeDeleted)
+                }}>YES</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
