@@ -102,14 +102,16 @@ The project has 3 major entities , accounts - it has money , records - the trans
 
 > To create a transfer record , the user must own both from account and to account. Because the purpose it to maintain personal finanaces .
 
+
+- We used Vite+React in typescript, tailwind for styling . 
+
+- The design was made mobile first , it's not for desktop usage .
+
 ## Pagination and filtering -
 
-> The get records endpoint on backend, allows the request to have query params in it's request where user can send filters to filter records and get their desired records , like records filtered by time period , or record_type , or amount . We also implemented pagination here using take skip parameters in prisma . The page number can be passed in the request body as query param
-
-> user_id is used on all tables to get the rows to ensure the user sees only his data , not other user's data .
-
-> - We used Vite+React in typescript, tailwind for styling . 
-> - The design was made mobile first , it's not for desktop usage .
+- The get records api, allows the request to have query params in it's request where user can send filters to filter records and get their desired records , like records filtered by time period , or record_type , or amount . 
+- We also implemented pagination here using take skip parameters in prisma . The page number can be passed in the request body as query param
+- user_id is used on all tables to get the rows to ensure the user sees only his data , not other user's data .
 
 
 ## Axios
