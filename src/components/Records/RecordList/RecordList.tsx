@@ -12,7 +12,7 @@ const RecordList = (props: RecordsProps) => {
   const Records = (props.Records || []).sort((a, b) => {
     return new Date(b.time).getTime() - new Date(a.time).getTime();
   });
-  if (!Records.length) return <>No records</>;
+  if (!Records.length) return <div className="min-h-screen p-5 flex justify-center items-center font-bold text-xl"><div>No records</div></div>;
 
   const GroupedByDate: GroupedByDateInterface = Object.groupBy(
     Records,
