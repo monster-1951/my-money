@@ -1,4 +1,4 @@
-# Personal Finance Management Applicatin | Full stack project
+# Personal Finance Management Application | Full stack project
 
 A full stack personal finance management application with transactional balance integrity , db level constraints and CSRF protected authentication.
 
@@ -30,13 +30,13 @@ A full stack personal finance management application with transactional balance 
 
 - Vercel (Frontend)
 - Render (Backend)
-- Neon (Databse)
+- Neon (Database)
 
 ## Local Setup
 
 Let's go through how to run this project locally .
 
-This project has 2 seperate repos for frontend and backend .
+This project has 2 separate repos for frontend and backend .
 
 ### Follow these steps
 
@@ -94,13 +94,13 @@ The project has 3 major entities , accounts - it has money , records - the trans
   - Records are of 3 kinds . Income , expense , transfer .
   - If user has recieved some money , it is income , if he spends , it is expense and if he transfers money from his account to one of his accounts , it is transfer .
   - Each record could be tagged to a category like salary , food , diet , discount , shopping , refund etc . ( Except for transfer)
-  - It involes Record type , the account involed ( two accounts in case of transfer ), amount , date and time of the transaction .
-  - Creating or updating or deleteing the transaction will auto update the balance in the concerned accounts and the balance will be reflected there itself .
+  - It involves Record type , the account involved ( two accounts in case of transfer ), amount , date and time of the transaction .
+  - Creating or updating or deleting the transaction will auto update the balance in the concerned accounts and the balance will be reflected there itself .
 - ### Categories
   - These are of 2 kinds , Income categories and Expense Categories .
   - User can assign the category to a record based on the record type .
 
-> To create a transfer record , the user must own both from account and to account. Because the purpose it to maintain personal finanaces .
+> To create a transfer record , the user must own both from account and to account. Because the purpose it to maintain personal finances .
 
 
 - We used Vite+React in typescript, tailwind for styling . 
@@ -110,7 +110,7 @@ The project has 3 major entities , accounts - it has money , records - the trans
 ## Pagination and filtering -
 
 - The get records api, allows the request to have query params in it's request where user can send filters to filter records and get their desired records , like records filtered by time period , or record_type , or amount . 
-- We also implemented pagination here using take skip parameters in prisma . The page number can be passed in the request body as query param
+- The page number can be passed in the request body as query param
 - user_id is used on all tables to get the rows to ensure the user sees only his data , not other user's data .
 
 
@@ -131,4 +131,12 @@ The project has 3 major entities , accounts - it has money , records - the trans
 - The app is organized page wise . 
 - Routes are managed by react-router-dom. 
 - Each page is a component , Each component has it's subcomponents . - Components are defined in the components directory , in organized way . 
-- Related compoonents are kept in related directory inside the main components directory .
+- Related components are kept in related directory inside the main components directory .
+
+## Authorization flow
+
+- When user logs in , backend sets a http only cookie in browser
+- The frontend can't access it.
+- CSRF token is fetched from backend and stored in memmory . Is it not persisted accros reloads.
+- On every request frontend makes , browser attaches the cookie along with it
+- Axios request interceptor attaches the csrf token in the x-csrf-token header
